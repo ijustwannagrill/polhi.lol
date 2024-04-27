@@ -133,10 +133,9 @@ function getCookie(cname) {
 function checkCookie() {
   let visited = getCookie("visited");
   if (visited != "") {
-  	 var videoElement = document.getElementById('chinaVideo');
+     modal.style.display = "block";
+     var videoElement = document.getElementById('chinaVideo');
   	 videoElement.pause();
-  	 videoElement.removeAttribute('src'); // empty source
-  	 videoElement.load();
   } else {
      modal.style.display = "block";
      Notification.requestPermission()
