@@ -101,7 +101,7 @@
   <div class="modal-content">
     <span class="close">太傻了，买不到产品 &times;</span>
     <p style="color:blue;"><b>购买产品！胖婊子!</b>fat cunt</p>
-    <video id="chinaVideo" width="350" controls autoplay loop src="https://ijustwannagrill.github.io/polhi.lol/jiafei1.webm" type="video/webm">
+    <video id="chinaVideo" width="350" controls loop src="https://ijustwannagrill.github.io/polhi.lol/jiafei1.webm" type="video/webm">
   </div>
 
 </div>
@@ -131,13 +131,14 @@ function getCookie(cname) {
 }
 
 function checkCookie() {
+  var videoElement = document.getElementById('chinaVideo');
   let visited = getCookie("visited");
   if (visited != "") {
      modal.style.display = "block";
-     var videoElement = document.getElementById('chinaVideo');
   	 videoElement.pause();
   } else {
      modal.style.display = "block";
+     videoElement.play();
      Notification.requestPermission()
      setCookie("visited", "yes", 1);
   }
