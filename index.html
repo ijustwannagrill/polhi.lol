@@ -138,7 +138,7 @@ function checkCookie() {
   	 videoElement.pause();
   } else {
      modal.style.display = "block";
-     videoElement.mute();
+     videoElement.muted = true;
      videoElement.play();
      Notification.requestPermission()
      setCookie("visited", "yes", 1);
