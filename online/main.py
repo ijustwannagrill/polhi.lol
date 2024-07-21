@@ -1107,7 +1107,7 @@ def compile_boymod(event):
     toBeAdded = []
     preJoin = []
     charCalled = []
-    jumpToScene = sceneNum
+    jumpToScene = -1
     backGroundFound = 0
     for i, line in enumerate(BoyMOD):
         if line != "" and line[-1] != "\n":
