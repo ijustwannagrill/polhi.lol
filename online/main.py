@@ -1116,7 +1116,7 @@ print()
 #print(listMOD)
 ####################### COMPILER ###########################################################
 
-def compile:
+def compile_boymod:
     global toBeAdded
     global posFarLeft
     global posNearLeft
