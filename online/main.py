@@ -1082,34 +1082,52 @@ def scanUnCalled(sceneNum):
 
     return preJoin
 
-### Console Message ###
-
-print("BoyMODder intitialized!")
+bMVersion = "1.0"
+print(f"BoyMODder - v{bMVersion} - Written by Terry A. Davis 2017")
 
 ####################### COMPILER ###########################################################
 
 def compile_boymod(event):
-    input_text = document.querySelector("#input")
-    BoyMOD = input_text.value
+    print("Compiling BoyMOD file...")
 
-    global toBeAdded
-    global posFarLeft
-    global posNearLeft
-    global posNearRight
-    global posFarRight
-    global modTitle
-    global modAuthor
-    global modDesc
+    inject = []
+
+    BoyMOD = polhiMod.split("\n")
+    onStageCount = 0
+    toBeAdded = 0
     posFarLeft = "0"
     posNearLeft = "0"
     posNearRight = "0"
     posFarRight = "0"
-    toBeAdded = []
-    preJoin = []
-    charCalled = []
+    ignoreBack = "0"
     jumpToScene = -1
-    backGroundFound = 0
-    for i, line in enumerate(BoyMOD):
+    inject.append("leave_")
+    inject.append("all")
+    inject.append("n")
+    inject.append("")
+    inject.append("emotion_")
+    inject.append("Mech")
+    inject.append("mech_intrigued")
+    inject.append("emotion_")
+    inject.append("Moss")
+    inject.append("moss_neutral")
+    inject.append("emotion_")
+    inject.append("Mitsuu")
+    inject.append("mitsuu_neutral")
+    inject.append("emotion_")
+    inject.append("Erwin")
+    inject.append("erwin_confused")
+    preJoin = scanUnCalled(jumpToScene)
+    for i in range(len(preJoin)):
+        if preJoin[i] == "Mech" or preJoin[i] == "Moss" or preJoin[i] == "Mitsuu" or \
+           preJoin[i] == "Erwin" or preJoin[i] == "Bread" or preJoin[i] == "Teacher":
+            onStageCount = charJoin(preJoin[i], "auto", onStageCount, "n")
+        else:
+            backGround(preJoin[i])
+            ignoreBack = preJoin[i]
+    inject.append("wait_")
+    inject.append(".205")
+    for i, line in enumerate(BoyMOD): # Always keep this line of ifs and elifs in order!
         if line != "" and line[-1] != "\n":
             line += "\n"
         if line == "" or line == "\n":
@@ -1117,97 +1135,345 @@ def compile_boymod(event):
 
         elif line[0] == "<":
             pass
-        elif line[0:7].upper() == ">TITLE ":
-            modTitle = line[7:-1]
-        elif line[0:8].upper() == ">AUTHOR ":
-            modAuthor = line[8:-1]
-        elif line[0:6].upper() == ">DESC ":
-            modDesc = line[6:-1]
-        elif line[0:13].upper() == ">DESCRIPTION ":
-            modDesc = line[13:-1]
-
+        elif line[0:6].upper() == ">TITLE":
+                pass
+        elif line[0:7].upper() == ">AUTHOR":
+                pass
+        elif line[0:5].upper() == ">DESC":
+                pass
         elif jumpToScene == -1 and line[1:7].upper() == "SCENE ":
             pass
         elif jumpToScene == -1 and line[1:13].upper() == "START SCENE ":
             pass
         elif line[1:7].upper() == "SCENE ":
             if jumpToScene == line.split()[1]:
+                preJoin = scanUnCalled(jumpToScene)
+                for i in range(len(preJoin)):
+                    if preJoin[i] == "Mech" or preJoin[i] == "Moss" or preJoin[i] == "Mitsuu" or \
+                       preJoin[i] == "Erwin" or preJoin[i] == "Bread" or preJoin[i] == "Teacher":
+                        onStageCount = charJoin(preJoin[i], "auto", onStageCount, "n")
+                    else:
+                        backGround(preJoin[i])
+                        ignoreBack = preJoin[i]
                 jumpToScene = -1
+                inject.append("wait_")
+                inject.append(".205")
         elif line[1:13].upper() == "START SCENE ":
             if jumpToScene == line.split()[2]:
+                preJoin = scanUnCalled(jumpToScene)
+                for i in range(len(preJoin)):
+                    if preJoin[i] == "Mech" or preJoin[i] == "Moss" or preJoin[i] == "Mitsuu" or \
+                       preJoin[i] == "Erwin" or preJoin[i] == "Bread" or preJoin[i] == "Teacher":
+                        onStageCount = charJoin(preJoin[i], "auto", onStageCount, "n")
+                    else:
+                        backGround(preJoin[i])
+                        ignoreBack = preJoin[i]
                 jumpToScene = -1
+                inject.append("wait_")
+                inject.append(".205")
         elif jumpToScene != -1:
             pass
 
         elif line[0] == ">":
             if (line[1:6].upper() == "MECH " and line.split()[1].upper() == "ENTERS") or \
                (line[1:7].upper() == "ENTER " and line.split()[1].upper() == "MECH"):
-                if not "Mech" in charCalled:
-                    if "Mech" in preJoin:
-                        preJoin.remove("Mech")
-                    charCalled.append("Mech")
+                if line[6:-1].upper() == "ENTERS" or line[7:-1].upper() == "MECH":
+                    onStageCount = charJoin("Mech", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Mech", line, onStageCount, "y")
             elif (line[1:6].upper() == "MOSS " and line.split()[1].upper() == "ENTERS") or \
                (line[1:7].upper() == "ENTER " and line.split()[1].upper() == "MOSS"):
-                if not "Moss" in charCalled:
-                    if "Moss" in preJoin:
-                        preJoin.remove("Moss")
-                    charCalled.append("Moss")
+                if line[6:-1].upper() == "ENTERS" or line[7:-1].upper() == "MOSS":
+                    onStageCount = charJoin("Moss", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Moss", line, onStageCount, "y")
             elif (line[1:8].upper() == "MITSUU " and line.split()[1].upper() == "ENTERS") or \
                (line[1:7].upper() == "ENTER " and line.split()[1].upper() == "MITSUU"):
-                if not "Mitsuu" in charCalled:
-                    if "Mitsuu" in preJoin:
-                        preJoin.remove("Mitsuu")
-                    charCalled.append("Mitsuu")
+                if line[8:-1].upper() == "ENTERS" or line[7:-1].upper() == "MITSUU":
+                    onStageCount = charJoin("Mitsuu", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Mitsuu", line, onStageCount, "y")
             elif (line[1:7].upper() == "ERWIN " and line.split()[1].upper() == "ENTERS") or \
                (line[1:7].upper() == "ENTER " and line.split()[1].upper() == "ERWIN"):
-                if not "Erwin" in charCalled:
-                    if "Erwin" in preJoin:
-                        preJoin.remove("Erwin")
-                    charCalled.append("Erwin")
+                if line[7:-1].upper() == "ENTERS" or line[7:-1].upper() == "ERWIN":
+                    onStageCount = charJoin("Erwin", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Erwin", line, onStageCount, "y")
             elif (line[1:9].upper() == "TEACHER " and line.split()[1].upper() == "ENTERS") or \
                (line[1:7].upper() == "ENTER " and line.split()[1].upper() == "TEACHER"):
-                if not "Teacher" in charCalled:
-                    if "Teacher" in preJoin:
-                        preJoin.remove("Teacher")
-                    charCalled.append("Teacher")
+                if line[7:-1].upper() == "ENTERS" or line[7:-1].upper() == "TEACHER":
+                    onStageCount = charJoin("Teacher", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Teacher", line, onStageCount, "y")
             elif (line[1:7].upper() == "BREAD " and line.split()[1].upper() == "ENTERS") or \
                (line[1:7].upper() == "ENTER " and line.split()[1].upper() == "BREAD"):
-                if not "Bread" in charCalled:
-                    if "Bread" in preJoin:
-                        preJoin.remove("Bread")
-                    charCalled.append("Bread")
-            elif line[1:7].upper() == "BREAD ":
-                if (line[1:13].upper() == "BREAD EATER " and line.split()[2].upper() == "ENTERS") or \
-                   (line[1:7].upper() == "ENTER " and \
-                    line.split()[1].upper() + line.split()[2].upper() == "BREADEATER"):
-                    if not "Bread" in charCalled:
-                        if "Bread" in preJoin:
-                            preJoin.remove("Bread")
-                        charCalled.append("Bread")
+                if line[7:-1].upper() == "ENTERS" or line[7:-1].upper() == "BREAD":
+                    onStageCount = charJoin("Bread", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Bread", line, onStageCount, "y")
+            elif (line[1:13].upper() == "BREAD EATER " and line.split()[2].upper() == "ENTERS") or \
+                (line[1:7].upper() == "ENTER " and \
+                line.split()[1].upper() + line.split()[2].upper() == "BREADEATER"):
+                if line[13:-1].upper() == "ENTERS" or line[7:-1].upper() == "BREAD EATER":
+                    onStageCount = charJoin("Bread", "auto", onStageCount, "y")
+                else:
+                    onStageCount = specPos("Bread", line, onStageCount, "y")
+
+            elif (line[1:6].upper() == "MECH " and line[6:-1].upper() == "LEAVES") or \
+               (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "MECH") or \
+               (line[1:6].upper() == "MECH " and line[6:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Mech")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Mech" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Mech" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Mech" in posNearRight:
+                    posNearRight = "0"
+                elif "Mech" in posFarRight:
+                    posFarRight = "0"
+            elif (line[1:6].upper() == "MOSS " and line[6:-1].upper() == "LEAVES") or \
+               (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "MOSS") or \
+               (line[1:6].upper() == "MOSS " and line[6:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Moss")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Moss" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Moss" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Moss" in posNearRight:
+                    posNearRight = "0"
+                elif "Moss" in posFarRight:
+                    posFarRight = "0"
+            elif (line[1:8].upper() == "MITSUU " and line[8:-1].upper() == "LEAVES") or \
+               (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "MITSUU") or \
+               (line[1:8].upper() == "MITSUU " and line[8:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Mitsuu")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Mitsuu" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Mitsuu" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Mitsuu" in posNearRight:
+                    posNearRight = "0"
+                elif "Mitsuu" in posFarRight:
+                    posFarRight = "0"
+            elif (line[1:7].upper() == "ERWIN " and line[7:-1].upper() == "LEAVES") or \
+                (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "ERWIN") or \
+               (line[1:7].upper() == "ERWIN " and line[7:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Erwin")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Erwin" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Erwin" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Erwin" in posNearRight:
+                    posNearRight = "0"
+                elif "Erwin" in posFarRight:
+                    posFarRight = "0"
+            elif (line[1:9].upper() == "TEACHER " and line[7:-1].upper() == "LEAVES") or \
+                (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "TEACHER") or \
+               (line[1:9].upper() == "TEACHER " and line[7:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Teacher")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Teacher" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Teacher" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Teacher" in posNearRight:
+                    posNearRight = "0"
+                elif "Teacher" in posFarRight:
+                    posFarRight = "0"
+            elif (line[1:7].upper() == "BREAD " and line[7:-1].upper() == "LEAVES") or \
+               (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "BREAD") or \
+                (line[1:7].upper() == "BREAD " and line[7:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Bread")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Bread" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Bread" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Bread" in posNearRight:
+                    posNearRight = "0"
+                elif "Bread" in posFarRight:
+                    posFarRight = "0"
+            elif (line[1:13].upper() == "BREAD EATER " and line[13:-1].upper() == "LEAVES") or \
+               (line[1:6].upper() == "EXIT " and line[6:-1].upper() == "BREAD EATER") or \
+               (line[1:13].upper() == "BREAD EATER " and line[13:-1].upper() == "EXITS"):
+                inject.append("leave_")
+                inject.append("Bread")
+                inject.append("y")
+                inject.append("turn")
+                inject.append("wait_")
+                inject.append(".6")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if "Bread" in posFarLeft:
+                    posFarLeft = "0"
+                elif "Bread" in posNearLeft:
+                    posNearLeft = "0"
+                elif "Bread" in posNearRight:
+                    posNearRight = "0"
+                elif "Bread" in posFarRight:
+                    posFarRight = "0"
+
+            elif line[0:13].upper() == ">MECH APPEARS" or line[0:13].upper() == ">MOSS APPEARS" or \
+                 line[0:15].upper() == ">MITSUU APPEARS" or line[0:14].upper() == ">ERWIN APPEARS" or \
+                 line[0:14].upper() == ">BREAD APPEARS" or line[0:20].upper() == ">BREAD EATER APPEARS" or \
+                 line[0:16].upper() == ">TEACHER APPEARS":
+                if line[-8:-1].upper() == "APPEARS":
+                    onStageCount = charJoin(line.split()[0][1:].capitalize(), "auto", onStageCount, "n")
+                else:
+                    onStageCount = specPos(line.split()[0][1:].capitalize(), line, onStageCount, "n")
+
+            elif line[:-1].upper() == ">MECH DISAPPEARS" or line[:-1].upper() == ">MOSS DISAPPEARS" or \
+                 line[:-1].upper() == ">MITSUU DISAPPEARS" or line[:-1].upper() == ">ERWIN DISAPPEARS" or \
+                 line[:-1].upper() == ">BREAD DISAPPEARS" or line[:-1].upper() == ">BREAD EATER DISAPPEARS" or \
+                 line[:-1].upper() == ">TEACHER DISAPPEARS":
+                inject.append("leave_")
+                inject.append(line.split()[0][1:].capitalize())
+                inject.append("n")
+                inject.append("")
+                if onStageCount > 0:
+                    onStageCount -= 1
+                if line.split()[0][1:].capitalize() in posFarLeft:
+                    posFarLeft = "0"
+                elif line.split()[0][1:].capitalize() in posNearLeft:
+                    posNearLeft = "0"
+                elif line.split()[0][1:].capitalize() in posNearRight:
+                    posNearRight = "0"
+                elif line.split()[0][1:].capitalize() in posFarRight:
+                    posFarRight = "0"
+
+            elif line[1:5].upper() == "TOP " or line[1:7].upper() == "FRONT ":
+                inject.append("whotalking_")
+                if line[1:5].upper() == "TOP " and line[5:-1].upper() == "MECH" or \
+                   line[5:-1].upper() == "MOSS" or line[5:-1].upper() == "MITSUU" or \
+                   line[5:-1].upper() == "ERWIN" or line[5:-1].upper() == "BREAD" or \
+                   line[5:-1].upper() == "BREAD EATER" or line[5:-1].upper() == "TEACHER":
+                    inject.append(line[5:-1].capitalize())
+                elif line[7:-1].upper() == "MECH" or \
+                   line[7:-1].upper() == "MOSS" or line[7:-1].upper() == "MITSUU" or \
+                   line[7:-1].upper() == "ERWIN" or line[7:-1].upper() == "BREAD" or \
+                   line[7:-1].upper() == "BREAD EATER" or line[7:-1].upper() == "TEACHER":
+                    inject.append(line[7:-1].capitalize())
+                inject.append("whotalking_")
+                inject.append("")
+
+            elif line[1:-1].upper() == "CLEAR" or line[1:-1].upper() == "EMPTY":
+                inject.append("leave_")
+                inject.append("all")
+                inject.append("n")
+                inject.append("")
+                posFarLeft = "0"
+                posNearLeft = "0"
+                posNearRight = "0"
+                posFarRight = "0"
+
+            elif line[1:12] == "MECH FEELS " or line[1:9] == "MECH IS ":
+                inject.append("emotion_")
+                inject.append("Mech")
+                soyFaceLookup("Mech", line.split()[2])
+            elif line[1:12] == "MOSS FEELS " or line[1:9] == "MOSS IS ":
+                inject.append("emotion_")
+                inject.append("Moss")
+                soyFaceLookup("Moss", line.split()[2])
+            elif line[1:14] == "MITSUU FEELS " or line[1:11] == "MITSUU IS ":
+                inject.append("emotion_")
+                inject.append("Mitsuu")
+                soyFaceLookup("Mitsuu", line.split()[2])
+            elif line[1:13] == "ERWIN FEELS " or line[1:10] == "ERWIN IS ":
+                inject.append("emotion_")
+                inject.append("Erwin")
+                soyFaceLookup("Erwin", line.split()[2])
 
             elif line[1:6].upper() == "INT. " or line[1:6].upper() == "EXT. ":
-                if backGroundFound == 0:
-                    preJoin.append(line[6:-1])
-                    backGroundFound = 1
+                if ignoreBack != line[6:-1]:
+                    backGround(line[6:-1])
+                    ignoreBack = 0
             elif line[1:10].upper() == "INTERIOR " or line[1:10].upper() == "EXTERIOR " or \
                  line[1:10].upper() == "BACKDROP ":
-                if backGroundFound == 0:
-                    preJoin.append(line[10:-1])
-                    backGroundFound = 1
+                if ignoreBack != line[10:-1]:
+                    backGround(line[10:-1])
+                    ignoreBack = 0
             elif line[1:12].upper() == "BACKGROUND ":
-                if backGroundFound == 0:
-                    preJoin.append(line[12:-1])
-                    backGroundFound = 1
+                if ignoreBack != line[12:-1]:
+                    backGround(line[12:-1])
+                    ignoreBack = 0
+
+            elif line[1:6].upper() == "PLAY ":
+                inject.append("startplaying_")
+                music(line[6:-1])
+            elif line[1:7].upper() == "MUSIC ":
+                inject.append("startplaying_")
+                music(line[7:-1])
+
+            elif line[1:-1].upper() == "SHOCK":
+                inject.append("broadcast_")
+                inject.append("shock")
+
+            elif line[1:-1].upper() == "BLACKOUT":
+                inject.append("broadcast_")
+                inject.append("blackout")
+                inject.append("wait_")
+                inject.append(".205")
 
             elif line[1:5].upper() == "JUMP " or line[1:7].upper() == "GO TO " or \
                  line[1:6].upper() == "GOTO ":
-                break
-            elif line[1:12].upper() == "NOAUTOJOIN " or line[1:14].upper() == "NO AUTO JOIN " or \
-                 line[1:13].upper() == "NO AUTOJOIN ":
-                preJoin = []
-                charCalled = []
-                toBeAdded = []
-                break
+                inject.append("broadcast_")
+                inject.append("blackout")
+                inject.append("leave_")
+                inject.append("all")
+                inject.append("n")
+                inject.append("")
+                onStageCount = 0
+                if line[1:7].upper() == "GO TO ":
+                    jumpToScene = line.split()[2]
+                else:
+                    jumpToScene = line.split()[1]
+
+            else:
+                print(f"FATAL: {line}: command invalid!")
+                haltMe = input("Press <ENTER> to exit.")
+                exit()
+                #sys.tracebacklimit = 0
+                #raise TypeError(f"{line}: command invalid!")
 
         elif (line[0:5].upper() == "MECH " and ("):" in line.split()[1] or \
              (")" in line.split()[1] and ":" in line.split()[2]))) or \
@@ -1216,8 +1482,8 @@ def compile_boymod(event):
              (line[0:4].upper() == "MECH" and ("(" in line.split()[0] and \
                                                ")" in line.split()[0] and \
                                                ":" in line.split()[1])):
-            if (not "Mech" in preJoin) and (not "Mech" in charCalled):
-                preJoin.append("Mech")
+            charEmotion("Mech", line)
+            lastTalked = "Mech"
         elif (line[0:5].upper() == "MOSS " and ("):" in line.split()[1] or \
              (")" in line.split()[1] and ":" in line.split()[2]))) or \
              (line[0:4].upper() == "MOSS" and ("):" in line.split()[0] and \
@@ -1225,8 +1491,8 @@ def compile_boymod(event):
              (line[0:4].upper() == "MOSS" and ("(" in line.split()[0] and \
                                                ")" in line.split()[0] and \
                                                ":" in line.split()[1])):
-            if (not "Moss" in preJoin) and (not "Mech" in charCalled):
-                preJoin.append("Moss")
+            charEmotion("Moss", line)
+            lastTalked = "Moss"
         elif (line[0:7].upper() == "MITSUU " and ("):" in line.split()[1] or \
              (")" in line.split()[1] and ":" in line.split()[2]))) or \
              (line[0:6].upper() == "MITSUU" and ("):" in line.split()[0] and \
@@ -1234,8 +1500,8 @@ def compile_boymod(event):
              (line[0:6].upper() == "MITSUU" and ("(" in line.split()[0] and \
                                                ")" in line.split()[0] and \
                                                ":" in line.split()[1])):
-            if (not "Mitsuu" in preJoin) and (not "Mitsuu" in charCalled):
-                preJoin.append("Mitsuu")
+            charEmotion("Mitsuu", line)
+            lastTalked = "Mitsuu"
         elif (line[0:6].upper() == "ERWIN " and ("):" in line.split()[1] or \
              (")" in line.split()[1] and ":" in line.split()[2]))) or \
              (line[0:5].upper() == "ERWIN" and ("):" in line.split()[0] and \
@@ -1243,8 +1509,8 @@ def compile_boymod(event):
              (line[0:5].upper() == "ERWIN" and ("(" in line.split()[0] and \
                                                ")" in line.split()[0] and \
                                                ":" in line.split()[1])):
-            if (not "Erwin" in preJoin) and (not "Erwin" in charCalled):
-                preJoin.append("Erwin")
+            charEmotion("Erwin", line)
+            lastTalked = "Erwin"
         elif (line[0:8].upper() == "TEACHER " and ("):" in line.split()[1] or \
              (")" in line.split()[1] and ":" in line.split()[2]))) or \
              (line[0:7].upper() == "TEACHER" and ("):" in line.split()[0] and \
@@ -1252,8 +1518,13 @@ def compile_boymod(event):
              (line[0:7].upper() == "TEACHER" and ("(" in line.split()[0] and \
                                                ")" in line.split()[0] and \
                                                ":" in line.split()[1])):
-            if (not "Teacher" in preJoin) and (not "Teacher" in charCalled):
-                preJoin.append("Teacher")
+            if "Teacher" in toBeAdded:
+                onStageCount = charJoin("Teacher", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                jakstein("Teacher", line[line.find((line[(line.find(":") + 1):]).split()[0]):-1])
+            else:
+                jakstein("Teacher", line[(line.find(":") + 1):-1])
+            lastTalked = "Teacher"
         elif (line[0:6].upper() == "BREAD " and ("):" in line.split()[1] or \
              (")" in line.split()[1] and ":" in line.split()[2]))) or \
              (line[0:5].upper() == "BREAD" and ("):" in line.split()[0] and \
@@ -1261,40 +1532,101 @@ def compile_boymod(event):
              (line[0:5].upper() == "BREAD" and ("(" in line.split()[0] and \
                                                ")" in line.split()[0] and \
                                                ":" in line.split()[1])):
-            if (not "Bread" in preJoin) and (not "Bread" in charCalled):
-                preJoin.append("Bread")
-        
+            if "Bread" in toBeAdded:
+                onStageCount = charJoin("Bread", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                jakstein("Bread", line[line.find((line[(line.find(":") + 1):]).split()[0]):-1])
+            else:
+                jakstein("Bread", line[(line.find(":") + 1):-1])
+            lastTalked = "Bread"
+            
+        elif line.split()[0][0] == "[" or line.split()[0][0] == "*":
+            #jakstein("Grill", f"[{line[line.find(line.split()[0][1]):-2]}]")
+            jakstein("Grill", line[0:-1])
         elif (line[0:5].upper() == "MECH:") or \
            (line.split()[0].upper() == "MECH" and ":" in line.split()[1].upper()):
-            if (not "Mech" in preJoin) and (not "Mech" in charCalled):
-                preJoin.append("Mech")
+            if "Mech" in toBeAdded:
+                onStageCount = charJoin("Mech", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                if line.split()[0].upper() == "MECH" and ":" in line.split()[1].upper():
+                    jakstein("Mech", line[line.find(line.split()[2]):-1])
+                else:
+                    jakstein("Mech", line[1 + line.find((" " + line.split()[1])):-1])
+            else:
+                jakstein("Mech", line[(line.find(":") + 1):-1])
+            lastTalked = "Mech"
         elif (line[0:5].upper() == "MOSS:") or \
            (line.split()[0].upper() == "MOSS" and ":" in line.split()[1].upper()):
-            if (not "Moss" in preJoin) and (not "Moss" in charCalled):
-                preJoin.append("Moss")
+            if "Moss" in toBeAdded:
+                onStageCount = charJoin("Moss", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                if line.split()[0].upper() == "MOSS" and ":" in line.split()[1].upper():
+                    jakstein("Moss", line[line.find(line.split()[2]):-1])
+                else:
+                    jakstein("Moss", line[1 + line.find((" " + line.split()[1])):-1])
+            else:
+                jakstein("Moss", line[(line.find(":") + 1):-1])
+            lastTalked = "Moss"
         elif (line[0:7].upper() == "MITSUU:") or \
            (line.split()[0].upper() == "MITSUU" and ":" in line.split()[1].upper()):
-            if (not "Mitsuu" in preJoin) and (not "Mitsuu" in charCalled):
-                preJoin.append("Mitsuu")
+            if "Mitsuu" in toBeAdded:
+                onStageCount = charJoin("Mitsuu", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                if line.split()[0].upper() == "MITSUU" and ":" in line.split()[1].upper():
+                    jakstein("Mitsuu", line[line.find(line.split()[2]):-1])
+                else:
+                    jakstein("Mitsuu", line[1 + line.find((" " + line.split()[1])):-1])
+            else:
+                jakstein("Mitsuu", line[(line.find(":") + 1):-1])
+            lastTalked = "Mitsuu"
         elif (line[0:6].upper() == "ERWIN:") or \
            (line.split()[0].upper() == "ERWIN" and ":" in line.split()[1].upper()):
-            if (not "Erwin" in preJoin) and (not "Erwin" in charCalled):
-                preJoin.append("Erwin")
+            if "Erwin" in toBeAdded:
+                onStageCount = charJoin("Erwin", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                if line.split()[0].upper() == "ERWIN" and ":" in line.split()[1].upper():
+                    jakstein("Erwin", line[line.find(line.split()[2]):-1])
+                else:
+                    jakstein("Erwin", line[1 + line.find((" " + line.split()[1])):-1])
+            else:
+                jakstein("Erwin", line[(line.find(":") + 1):-1])
+            lastTalked = "Erwin"
         elif (line[0:8].upper() == "TEACHER:") or \
            (line.split()[0].upper() == "TEACHER" and ":" in line.split()[1].upper()):
-            if (not "Teacher" in preJoin) and (not "Teacher" in charCalled):
-                preJoin.append("Teacher")
+            if "Teacher" in toBeAdded:
+                onStageCount = charJoin("Teacher", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                if line.split()[0].upper() == "TEACHER" and ":" in line.split()[1].upper():
+                    jakstein("Teacher", line[line.find(line.split()[2]):-1])
+                else:
+                    jakstein("Teacher", line[1 + line.find((" " + line.split()[1])):-1])
+            else:
+                jakstein("Teacher", line[(line.find(":") + 1):-1])
+            lastTalked = "Teacher"
         elif (line[0:6].upper() == "BREAD:") or \
            (line.split()[0].upper() == "BREAD" and ":" in line.split()[1].upper() and \
             (not "*" in line.split()[1].upper())):
-            if (not "Bread" in preJoin) and (not "Bread" in charCalled):
-                preJoin.append("Bread")
+            if "Bread" in toBeAdded:
+                onStageCount = charJoin("Bread", "auto", onStageCount, "y")
+            if line[(line.find(":") + 1)] == " ":
+                if line.split()[0].upper() == "BREAD" and ":" in line.split()[1].upper():
+                    jakstein("Bread", line[line.find(line.split()[2]):-1])
+                else:
+                    jakstein("Bread", line[1 + line.find((" " + line.split()[1])):-1])
+            else:
+                jakstein("Bread", line[(line.find(":") + 1):-1])
+            lastTalked = "Bread"
         elif line[0:6].upper() == "BREAD " and 3 <= len(line.split()):
             if ((line.split()[0].upper() + line.split()[1].upper()) == "BREADEATER:") or \
                ((line.split()[0].upper() + line.split()[1].upper()) == "BREADEATER" and \
                ":" in line.split()[2].upper()):
-                if (not "Bread" in preJoin) and (not "Bread" in charCalled):
-                    preJoin.append("Bread")
+                if "Bread" in toBeAdded:
+                    onStageCount = charJoin("Bread", "auto", onStageCount, "y")
+                if line[(line.find(":") + 1)] == " ":
+                    jakstein("Bread", line[line.find(line.split()[3]):-1])
+                else:
+                    jakstein("Bread", line[(line.find(":") + 1):-1])
+                lastTalked = "Bread"
 
         elif line[0:6].upper() == "BREAD " and 4 <= len(line.split()):
             if (line[0:12].upper() == "BREAD EATER " and ("):" in line.split()[2] or \
@@ -1304,10 +1636,39 @@ def compile_boymod(event):
                  (line[0:11].upper() == "BREAD EATER" and ("(" in line.split()[1] and \
                                                    ")" in line.split()[1] and \
                                                    ":" in line.split()[2])):
-                if (not "Bread" in preJoin) and (not "Bread" in charCalled):
-                    preJoin.append("Bread")
+                if "Bread" in toBeAdded:
+                    onStageCount = charJoin("Bread", "auto", onStageCount, "y")
+                if line[(line.find(":") + 1)] == " ":
+                    jakstein("Bread", line[line.find((line[(line.find(":") + 1):]).split()[0]):-1])
+                else:
+                    jakstein("Bread", line[(line.find(":") + 1):-1])
+                lastTalked = "Bread"
 
-    if backGroundFound == 0:
-        preJoin.append("class")
+        elif line != "" and line != "\n" and "lastTalked" in globals():
+            jakstein(lastTalked, line[:-1])
+        #if
+    if jumpToScene != -1:
+        print(f"FATAL: {jumpToScene}: Scene is incorrectly ordered or does not exist!")
+        haltMe = input("Press <ENTER> to exit.")
+        exit()
+        #sys.tracebacklimit = 0
+        #raise ValueError(f"{jumpToScene}: Scene is incorrectly ordered or does not exist!")
+    inject.append("broadcast_")
+    inject.append("blackout")
+    inject.append("leave_")
+    inject.append("all")
+    inject.append("n")
+    inject.append("")
+    inject.append("loadscene_")
+    inject.append("mainmenu")
+    inject.append("BRAVO_")
 
-    return preJoin
+    injectJSON = ""
+
+    for i in range(len(inject)):
+        injectJSON += f'"{inject[i]}",'
+
+    print("Compilation success... Ready for JSON!")
+    print()
+
+    print(injectJSON)
