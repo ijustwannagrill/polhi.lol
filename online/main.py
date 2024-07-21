@@ -1,3 +1,5 @@
+from pyscript import document
+
 def injS(string, pos, char):
     string = str(string)
     pos = int(pos)
@@ -1080,43 +1082,16 @@ def scanUnCalled(sceneNum):
 
     return preJoin
 
-#jakstein("Grill", str(input("Erm... Enter your dialogue here: ")))
-#exit()
-#jakstein("Grill", '[')
+### Console Message ###
 
-modTitle = ""
-modAuthor = ""
-modDesc = ""
+print("BoyMODder intitialized!")
 
-bMVersion = "1.0"
-print(f"BoyMODder - v{bMVersion} - Written by Terry A. Davis 2017")
-
-polhiImage = "placeholder"
-if polhiImage == "":
-    print("FATAL: No file selected! bruh")
-    haltMe = input("Press <ENTER> to exit.")
-    exit()
-
-print(polhiImage)
-
-print("Select the BoyMOD file you wish to patch with: ")
-selectMod = "placeholder"
-
-polhiMod = str(input())
-
-if polhiMod == "":
-    print("FATAL: No file selected! bruh")
-    haltMe = input("Press <ENTER> to exit.")
-    exit()
-
-print(polhiMod)
-print()
-
-#listMOD = ["kitty", "cucumber", "dog"]
-#print(listMOD)
 ####################### COMPILER ###########################################################
 
 def compile_boymod:
+    input_text = document.querySelector("#input")
+    BoyMOD = input_text.value
+
     global toBeAdded
     global posFarLeft
     global posNearLeft
