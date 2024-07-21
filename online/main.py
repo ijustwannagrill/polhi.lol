@@ -1090,6 +1090,9 @@ print(f"BoyMODder - v{bMVersion} - Written by Terry A. Davis 2017")
 def compile_boymod(event):
     print("Compiling BoyMOD file...")
 
+    input_text = document.querySelector("#input")
+    english = input_text.value
+
     inject = []
 
     BoyMOD = polhiMod.split("\n")
