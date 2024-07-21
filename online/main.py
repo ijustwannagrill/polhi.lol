@@ -1091,11 +1091,10 @@ def compile_boymod(event):
     print("Compiling BoyMOD file...")
 
     input_text = document.querySelector("#input")
-    english = input_text.value
+    BoyMOD = input_text.value.split("\n")
 
     inject = []
-
-    BoyMOD = polhiMod.split("\n")
+    
     onStageCount = 0
     toBeAdded = 0
     posFarLeft = "0"
