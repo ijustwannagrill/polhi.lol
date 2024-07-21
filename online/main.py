@@ -1088,7 +1088,7 @@ print("BoyMODder intitialized!")
 
 ####################### COMPILER ###########################################################
 
-def compile_boymod:
+def compile_boymod(event):
     input_text = document.querySelector("#input")
     BoyMOD = input_text.value
 
