@@ -1678,17 +1678,16 @@ def compile_boymod(event):
     inject.append("mainmenu")
     inject.append("BRAVO_")
 
-    injectJSON = '{"☁ compiled":['
+    injectJSON = '{"☁ compiled":"'
 
     for i in range(len(inject) - 1):
-        injectJSON += f'"{inject[i]}",'
-    injectJSON += f'"{inject[-1]}"'
+        injectJSON += f"{inject[i]}🤡"
+    injectJSON += f"{inject[-1]}"
 
-    injectJSON += "]}"
+    injectJSON += '"}'
 
-    print("Compilation success... Ready for JSON!")
+    print("Compilation success... Ready for Turbowarp!")
     print()
 
     window.localStorage.setItem("cloudvariables:polhi.lol-online", injectJSON)
     window.open("./play")
-    
