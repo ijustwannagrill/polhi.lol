@@ -2,23 +2,262 @@
 <html>
 
 <head>
-<link rel="shortcut icon" type="image/png" href="../bm_gear_border.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BoyMODder online</title>
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 
+<style>
+    @font-face {
+        font-family: NotoSans;
+        src: url(https://polhi.lol/online/fonts/NotoSansVar.ttf);
+    }
+    @font-face {
+        font-family: Sono;
+        src: url(https://polhi.lol/online/fonts/SonoVar.ttf);
+    }
+    body {
+        background-color: #383838;
+        color: white;
+        font-family: NotoSans;
+    }
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+    #gamecontainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+        background-color: #111111;
+        border-radius: 5px;
+    }
+    #gameframe {
+        width: 480px;
+        height: 360px;
+        border: none;
+        resize: vertical;
+    }
+    #buttonbar {
+        display: flex;
+        align-items: left;
+        column-gap: 10px;
+        padding: 10px 0;
+    }
+    #editorlabel {
+        margin-right: auto;
+        color: lightgray;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    textarea {
+        resize: vertical;
+        border: none;
+        outline: none;
+        width: 100%;
+        height: 500px;
+        background-color: #1e1e1e;
+        color: white;
+        border-radius: 5px;
+        font-family: Sono;
+        font-size: 14px;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: gray; 
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: white;
+        cursor: default;
+    }
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition-duration: 0.3s;
+        cursor: pointer;
+        font-family: NotoSans;
+    }
+    #playbutton {
+        background-color: #3f2a2c;
+        border: 1px solid #77494e;
+        margin-right: auto;
+    }
+    #playbutton:hover {
+        background-color: #77494e;
+    }
+    #savebutton {
+        background-color: #2a343f;
+        border: 1px solid #495d77;
+    }
+    #savebutton:hover {
+        background-color: #495d77;
+    }
+    #sharebutton {
+        background-color: #2f3f2a;
+        border: 1px solid #507749;
+    }
+    #sharebutton:hover {
+        background-color: #507749;
+    }
+    #manbutton {
+        background-color: #3f3f2a;
+        border: 1px solid #777349;
+    }
+    #manbutton:hover {
+        background-color: #777349;
+    }
+    #incbutton {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        background-color: #1e1e1e;
+        border: 1px solid gray;
+    }
+    #incbutton:hover {
+        background-color: gray;
+    }
+    #decbutton {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        background-color: #1e1e1e;
+        border: 1px solid gray;
+    }
+    #decbutton:hover {
+        background-color: gray;
+    }
+    #output {
+        background-color: #77494e;
+        color: white;
+        font-family: Sono;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+</style>
 <body>
 
-<p>BoyMOD goes here</p>
-<textarea id="input" type="text" name="bmHere"></textarea>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let params = new URLSearchParams(document.location.search);
+        let code = params.get("b");
+        if (code != null) {
+            code = atob(code);
+            input = document.getElementById("input");
+            input.placeholder = code;
+        }
+    });
+</script>
+    
+<div id="gamecontainer">
+    <iframe id="gameframe"src="https://polhi.lol/online/placeholder" scroll="no"></iframe>
+</div>
 
-<br>
+<div id="buttonbar">
+    <button id="playbutton" py-click="compile_boymod">
+        Play
+        <img src="https://polhi.lol/online/images/polheart.png" style="margin: 0 0 0 6px" height=15px>
+    </button>
 
-<button py-click="compile_boymod">Patch</button>
-    <div id="output"></div>
-    <script type="py" src="./main.py"></script>
+    <p id="editorlabel">BoyMOD goes here 🠟🠟🠟</p>
+
+    <button id="savebutton" onclick="save()">
+        Save .boymod
+        <img src="https://polhi.lol/online/images/boymod.png" style="margin:0 0 0 6px" height=15px>
+    </button>
+
+    <button id="sharebutton" onclick="share()">
+        Share
+        <img src="https://polhi.lol/online/images/share.png" style="margin: 0 0 0 6px" height=15px>
+    </button>
+
+    <button id="manbutton" onclick="rtfm()">
+        RTFM
+        <img src="https://polhi.lol/online/images/manual.png" style="margin: 0 0 0 6px" height=15px>
+    </button>
+</div>
+
+<div id="output"></div>
+
+<textarea id="input" type="text" name="bmHere" rows="10" cols="50" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+
+<div id="buttonbar">
+    <button id="incbutton" onclick="incFontSize()">+</button>
+    <button id="decbutton" onclick="decFontSize()">-</button>
+</div>
+
+<center>
+    <p style="color: gray">[ijwg]</p>
+</center>
+
+<script type="py" src="./main.py"></script>
+
+<script>
+    function save(){
+        var text = document.getElementById("input").value;
+        text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
+        var blob = new Blob([text], { type: "text/plain"});
+        var anchor = document.createElement("a");
+        anchor.download = "project.boymod";
+        anchor.href = window.URL.createObjectURL(blob);
+        anchor.target ="_blank";
+        anchor.style.display = "none"; // just to be safe!
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+ }
+</script>
+
+<script>
+    function share(){
+        var text = document.getElementById("input").value;
+        text = text.replace(/\n/g, "\r\n");
+        link = "https://polhi.lol/online/?b=" + btoa(text);
+        console.log(link);
+    }
+</script>
+
+<script>
+    function rtfm(){
+        window.open("https://polhi.lol/man", "_blank")
+    }
+</script>
+
+<script>
+    function incFontSize() {
+    txt = document.getElementById("input");
+    style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
+    currentSize = parseFloat(style);
+    txt.style.fontSize = (currentSize + 2) + "px";
+
+    txt = document.getElementById("output");
+    style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
+    currentSize = parseFloat(style);
+    txt.style.fontSize = (currentSize + 2) + "px";
+}
+    function decFontSize() {
+    txt = document.getElementById("input");
+    style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
+    currentSize = parseFloat(style);
+    txt.style.fontSize = (currentSize - 2) + "px";
+
+    txt = document.getElementById("output");
+    style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
+    currentSize = parseFloat(style);
+    txt.style.fontSize = (currentSize - 2) + "px";
+}
+</script>
 
 </body>
 
