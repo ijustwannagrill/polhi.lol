@@ -155,6 +155,7 @@
         let code = params.get("b");
         if (code != null) {
             code = decodeURI(code);
+            console.log(code)
             input = document.getElementById("input");
             input.innerText = code;
         }
@@ -223,7 +224,6 @@
 <script>
     function share(){
         var text = document.getElementById("input").value;
-        text = text.replace(/\n/g, "\r\n");
         link = "https://polhi.lol/online/?b=" + encodeURI(text);
         navigator.clipboard.writeText(link);
 
