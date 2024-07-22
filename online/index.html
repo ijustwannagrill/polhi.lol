@@ -156,7 +156,8 @@
         if (code != null) {
             code = decodeURI(code);
             code = code.replace(/(?:\r\n|\r|\n)/g, '<br>');
-            console.log(code)
+            code = "<p>" + code + "</p>"
+            
             input = document.getElementById("input");
             input.innerHTML = code;
         }
