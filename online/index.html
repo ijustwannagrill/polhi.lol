@@ -155,6 +155,7 @@
         let code = params.get("b");
         if (code != null) {
             code = decodeURI(code);
+            code = code.replace(/(?:\r\n|\r|\n)/g, '<br>');
             console.log(code)
             input = document.getElementById("input");
             input.innerText = code;
