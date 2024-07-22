@@ -1121,6 +1121,7 @@ def compile_boymod(event):
 
     output_div = document.querySelector("#output")
     output_div.innerText = ""
+    output_div.style= ""
 
     inject = []
 
@@ -1696,6 +1697,9 @@ def compile_boymod(event):
     inject.append("BRAVO_")
 
     if terminated != True:
+        gameframe = document.querySelector("#output")
+        gameframe.style = "background-color: #777349"
+        
         print("Compilation success... Ready for Turbowarp!")
 
         injectJSON = '{"☁ compiled":"'
@@ -1707,5 +1711,7 @@ def compile_boymod(event):
         injectJSON += '"}'
         
         window.localStorage.setItem("cloudvariables:polhi.lol-online", injectJSON)
-        window.open("./play")
+        
+        gameframe = document.querySelector("#gameframe")
+        gameframe.src = "./play"
     
