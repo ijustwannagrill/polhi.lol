@@ -1690,4 +1690,5 @@ def compile_boymod(event):
     print()
 
     window.localStorage.setItem("polhi.lol-online", injectJSON)
+    window.open("./play")
     
