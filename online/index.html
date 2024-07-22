@@ -155,7 +155,7 @@
         if (code != null) {
             code = atob(code);
             input = document.getElementById("input");
-            input.placeholder = code;
+            input.innerText = code;
         }
     });
 </script>
@@ -190,7 +190,7 @@
 
 <div id="output"></div>
 
-<textarea id="input" type="text" name="bmHere" rows="10" cols="50" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+<textarea id="input" type="text" placeholder="MOSS (shocked): Lorem ipsum dolor, sit amet" name="bmHere" rows="10" cols="50" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
 
 <div id="buttonbar">
     <button id="incbutton" onclick="incFontSize()">+</button>
