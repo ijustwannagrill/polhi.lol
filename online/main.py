@@ -1689,6 +1689,6 @@ def compile_boymod(event):
     print("Compilation success... Ready for JSON!")
     print()
 
-    window.localStorage.setItem("polhi.lol-online", injectJSON)
+    window.localStorage.setItem("cloudvariables:polhi.lol-online", injectJSON)
     window.open("./play")
     
