@@ -11,11 +11,11 @@
 <style>
     @font-face {
         font-family: NotoSans;
-        src: url(https://polhi.lol/online/fonts/NotoSansVar.ttf);
+        src: url(./fonts/NotoSansVar.ttf);
     }
     @font-face {
         font-family: Sono;
-        src: url(https://polhi.lol/online/fonts/SonoVar.ttf);
+        src: url(./fonts/SonoVar.ttf);
     }
     body {
         background-color: #383838;
@@ -161,30 +161,30 @@
 </script>
     
 <div id="gamecontainer">
-    <iframe id="gameframe"src="https://polhi.lol/online/placeholder" scroll="no"></iframe>
+    <iframe id="gameframe"src="./placeholder" scroll="no"></iframe>
 </div>
 
 <div id="buttonbar">
     <button id="playbutton" py-click="compile_boymod">
         Play
-        <img src="https://polhi.lol/online/images/polheart.png" style="margin: 0 0 0 6px" height=15px>
+        <img src="./images/polheart.png" style="margin: 0 0 0 6px" height=15px>
     </button>
 
     <p id="editorlabel">BoyMOD goes here 🠟🠟🠟</p>
 
     <button id="savebutton" onclick="save()">
         Save .boymod
-        <img src="https://polhi.lol/online/images/boymod.png" style="margin:0 0 0 6px" height=15px>
+        <img src="./images/boymod.png" style="margin:0 0 0 6px" height=15px>
     </button>
 
     <button id="sharebutton" onclick="share()">
         Share
-        <img src="https://polhi.lol/online/images/share.png" style="margin: 0 0 0 6px" height=15px>
+        <img src="./images/share.png" style="margin: 0 0 0 6px" height=15px>
     </button>
 
     <button id="manbutton" onclick="rtfm()">
         RTFM
-        <img src="https://polhi.lol/online/images/manual.png" style="margin: 0 0 0 6px" height=15px>
+        <img src="./images/manual.png" style="margin: 0 0 0 6px" height=15px>
     </button>
 </div>
 
@@ -230,7 +230,7 @@
 
 <script>
     function rtfm(){
-        window.open("https://polhi.lol/man", "_blank")
+        window.open("../man", "_blank")
     }
 </script>
 
