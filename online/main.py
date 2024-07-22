@@ -1,4 +1,4 @@
-from pyscript import document
+from pyscript import document, display, window
 
 def injS(string, pos, char):
     string = str(string)
@@ -1090,6 +1090,19 @@ print(f"BoyMODder - v{bMVersion} - Written by Terry A. Davis 2017")
 def compile_boymod(event):
     print("Compiling BoyMOD file...")
 
+    global BoyMOD
+    global inject
+    global onStageCount
+    global toBeAdded
+    global posFarLeft
+    global posNearLeft
+    global posNearRight
+    global posFarRight
+    global ignoreBack
+    global jumpToScene
+    global preJoin
+    
+
     input_text = document.querySelector("#input")
     BoyMOD = input_text.value.split("\n")
 
@@ -1665,12 +1678,16 @@ def compile_boymod(event):
     inject.append("mainmenu")
     inject.append("BRAVO_")
 
-    injectJSON = ""
+    injectJSON = '{"☁ compiled":['
 
-    for i in range(len(inject)):
+    for i in range(len(inject) - 1):
         injectJSON += f'"{inject[i]}",'
+    injectJSON += f'"{inject[-1]}"'
+
+    injectJSON += "]}"
 
     print("Compilation success... Ready for JSON!")
     print()
 
-    print(injectJSON)
+    window.localStorage.setItem("polhi.lol-online", injectJSON)
+    
