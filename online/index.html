@@ -222,7 +222,6 @@
 <script>
     function share(){
         var text = document.getElementById("input").value;
-        text = text.replace(/\n/g, "\r\n");
         link = "https://polhi.lol/online/?b=" + btoa(text);
         navigator.clipboard.writeText(link);
 
