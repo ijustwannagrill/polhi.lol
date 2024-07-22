@@ -74,9 +74,10 @@ def jakstein(char, dialogue):
         if not dialogue[i] in acceptedChars:
             charERR += f"['{dialogue[i]}' at {i}] "
     if charERR != "":
-        print(f"FATAL: {dialogue}: character(s) {charERR} unsupported! Sorry sweaty!")
-        haltMe = input("Press <ENTER> to exit.")
-        exit()
+        output_div = document.querySelector("#output")
+        output_div.innerText = f"FATAL: {dialogue}: character(s) {charERR} unsupported! Sorry sweaty!"
+        global terminated
+        terminated = True
         #sys.tracebacklimit = 0
         #raise TypeError(f"{dialogue}: character(s) {charERR} unsupported! Sorry sweaty!")
         #print(f"Jakstein: {dialogue}: Character(s) {charERR} unsupported! Sorry sweaty!")
@@ -316,7 +317,8 @@ def backGround(bkg):
         inject.append("background_")
         inject.append("bg_corner_b")
     else:
-        warnings.warn(f"Unknown background {bkg}! Ignoring...")
+        output_div = document.querySelector("#output")
+        output_div.innerText += f"WARNING: Unknown background {bkg}! Ignoring..." + "\n"
 
 def music(track):
     track = track.lower()
@@ -366,7 +368,8 @@ def music(track):
        "none" in track or "clear" in track:
         inject.append("")
     else:
-        warnings.warn(f"Unknown track argument {track}! Ignoring...")
+        output_div = document.querySelector("#output")
+        output_div.innerText += f"WARNING: Unknown track argument {track}! Ignoring..." + "\n"
 
 def soyFaceLookup(char, soyFace):
     soyFace = soyFace.lower()
@@ -413,7 +416,9 @@ def soyFaceLookup(char, soyFace):
             inject.append("mech_uwu")
         else:
             inject.append("mech_intrigued")
-            warnings.warn(f"Unknown emotion {soyFace} for Mech! Using default...")
+            output_div = document.querySelector("#output")
+            output_div.innerText += f"WARNING: Unknown emotion {soyFace} for Mech! Using default..." + "\n"
+            
     elif char == "Moss":
         if soyFace == "blush" or soyFace == "blushing" or \
            soyFace == "flirty" or soyFace == "flushed" or \
@@ -454,7 +459,9 @@ def soyFaceLookup(char, soyFace):
             inject.append("moss_shocked")
         else:
             inject.append("moss_neutral")
-            warnings.warn(f"Unknown emotion {soyFace} for Moss! Using default...")
+            output_div = document.querySelector("#output")
+            output_div.innerText += f"WARNING: Unknown emotion {soyFace} for Moss! Using default..." + "\n"
+            
     elif char == "Mitsuu":
         if soyFace == "blush" or soyFace == "blushing" or \
            soyFace == "flirty" or soyFace == "flushed" or \
@@ -499,7 +506,9 @@ def soyFaceLookup(char, soyFace):
             inject.append("mitsuu_smug")
         else:
             inject.append("mitsuu_neutral")
-            warnings.warn(f"Unknown emotion {soyFace} for Mitsuu! Using default...")
+            output_div = document.querySelector("#output")
+            output_div.innerText += f"WARNING: Unknown emotion {soyFace} for Mitsuu! Using default..." + "\n"
+            
     elif char == "Erwin":
         if soyFace == "angry" or soyFace == "pissed" or \
            soyFace == "pissy" or soyFace == "fuming" or \
@@ -545,7 +554,8 @@ def soyFaceLookup(char, soyFace):
             inject.append("erwin_baka")
         else:
             inject.append("erwin_confused")
-            warnings.warn(f"Unknown emotion {soyFace} for Erwin! Using default...")
+            output_div = document.querySelector("#output")
+            output_div.innerText += f"WARNING: Unknown emotion {soyFace} for Erwin! Using default..." + "\n"
 
 def charEmotion(char, soyLine):
     global toBeAdded
@@ -831,9 +841,10 @@ def specPos(char, posLine, onStageCount):
     twordCheck = ['FAR', 'NEAR']
     posList = ['FARLEFT', 'FAR LEFT', 'NEARLEFT', 'NEAR LEFT', 'NEARRIGHT', 'NEAR RIGHT', 'FARRIGHT', 'FAR RIGHT']
     if (not (posLine.split()[2].upper() in posList)) and (not (posLine.split()[2].upper() in twordCheck)):
-        print(f"FATAL: {posLine}: {posLine.split()[2]}: position invalid!")
-        haltMe = input("Press <ENTER> to exit.")
-        exit()
+        output_div = document.querySelector("#output")
+        output_div.innerText = f"FATAL: {posLine}: {posLine.split()[2]}: position invalid!"
+        global terminated
+        terminated = True
         #sys.tracebacklimit = 0
         #raise TypeError(f"{posLine}: {posLine.split()[2]}: position invalid!")
     elif posLine.split()[2].upper() == "FARLEFT":
@@ -846,9 +857,9 @@ def specPos(char, posLine, onStageCount):
         onStageCount = charJoin(char, "farright", onStageCount, "y")
 
     elif not posLine.split()[2].upper() + posLine.split()[3].upper() in posList:
-        print(f"FATAL: {posLine}: position invalid!")
-        haltMe = input("Press <ENTER> to exit.")
-        exit()
+        output_div = document.querySelector("#output")
+        output_div.innerText = f"FATAL: {posLine}: position invalid!"
+        terminated = True
         #sys.tracebacklimit = 0
         #raise TypeError(f"{posLine}: {posLine.split()[2] + " " + posLine.split()[3]}: position invalid!")
     elif posLine.split()[2].upper() + posLine.split()[3].upper() == "FARLEFT":
@@ -1101,13 +1112,19 @@ def compile_boymod(event):
     global ignoreBack
     global jumpToScene
     global preJoin
+    global terminated
+    global lastTalked
     
 
     input_text = document.querySelector("#input")
     BoyMOD = input_text.value.split("\n")
 
+    output_div = document.querySelector("#output")
+    output_div.innerText = ""
+
     inject = []
-    
+
+    terminated = False
     onStageCount = 0
     toBeAdded = 0
     posFarLeft = "0"
@@ -1484,9 +1501,9 @@ def compile_boymod(event):
                     jumpToScene = line.split()[1]
 
             else:
-                print(f"FATAL: {line}: command invalid!")
-                haltMe = input("Press <ENTER> to exit.")
-                exit()
+                output_div = document.querySelector("#output")
+                output_div.innerText = f"FATAL: {line.strip()}: command invalid!"
+                terminated = True
                 #sys.tracebacklimit = 0
                 #raise TypeError(f"{line}: command invalid!")
 
@@ -1663,9 +1680,9 @@ def compile_boymod(event):
             jakstein(lastTalked, line[:-1])
         #if
     if jumpToScene != -1:
-        print(f"FATAL: {jumpToScene}: Scene is incorrectly ordered or does not exist!")
-        haltMe = input("Press <ENTER> to exit.")
-        exit()
+        output_div = document.querySelector("#output")
+        output_div.innerText = f"FATAL: {jumpToScene}: Scene is incorrectly ordered or does not exist!"
+        terminated = True
         #sys.tracebacklimit = 0
         #raise ValueError(f"{jumpToScene}: Scene is incorrectly ordered or does not exist!")
     inject.append("broadcast_")
@@ -1678,16 +1695,17 @@ def compile_boymod(event):
     inject.append("mainmenu")
     inject.append("BRAVO_")
 
-    injectJSON = '{"☁ compiled":"'
+    if terminated != True:
+        print("Compilation success... Ready for Turbowarp!")
 
-    for i in range(len(inject) - 1):
-        injectJSON += f"{inject[i]}🤡"
-    injectJSON += f"{inject[-1]}"
+        injectJSON = '{"☁ compiled":"'
 
-    injectJSON += '"}'
+        for i in range(len(inject) - 1):
+            injectJSON += f"{inject[i]}🤡"
+        injectJSON += f"{inject[-1]}"
 
-    print("Compilation success... Ready for Turbowarp!")
-    print()
-
-    window.localStorage.setItem("cloudvariables:polhi.lol-online", injectJSON)
-    window.open("./play")
+        injectJSON += '"}'
+        
+        window.localStorage.setItem("cloudvariables:polhi.lol-online", injectJSON)
+        window.open("./play")
+    
