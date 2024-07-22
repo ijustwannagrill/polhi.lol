@@ -165,7 +165,7 @@
     <noscript>Enable JavaScript</noscript>
     
     
-    <div class="progress-bar-outer"><div class="progress-bar-inner" id="loading-inner"></div></div>
+    
   </div>
 
   <div id="error" class="screen" hidden>
@@ -234,11 +234,11 @@
 
       vm.setTurboMode(false);
       if (vm.setInterpolation) vm.setInterpolation(false);
-      if (vm.setFramerate) vm.setFramerate(30);
+      if (vm.setFramerate) vm.setFramerate(60);
       if (vm.renderer.setUseHighQualityRender) vm.renderer.setUseHighQualityRender(false);
       if (vm.setRuntimeOptions) vm.setRuntimeOptions({
-        fencing: true,
-        miscLimits: true,
+        fencing: false,
+        miscLimits: false,
         maxClones: 300,
       });
       if (vm.setCompilerOptions) vm.setCompilerOptions({
