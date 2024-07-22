@@ -224,7 +224,17 @@
         var text = document.getElementById("input").value;
         text = text.replace(/\n/g, "\r\n");
         link = "https://polhi.lol/online/?b=" + btoa(text);
-        console.log(link);
+        navigator.clipboard.writeText(link);
+
+        var button = document.getElementById("sharebutton");
+        button.style = "background-color: #507749;"
+        button.innerHTML = "Copied to clipboard!";
+        
+        setTimeout(function() {
+            var button = document.getElementById("sharebutton");
+            button.style = ""
+            button.innerHTML = 'Share <img src="https://polhi.lol/online/images/share.png" style="margin: 0 0 0 6px" height=15px>';
+        }, 3000);
     }
 </script>
 
