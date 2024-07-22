@@ -148,6 +148,11 @@
         border-radius: 5px;
         font-size: 14px;
     }
+    #watermark {
+        color: gray;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 </style>
 <body>
 
@@ -199,7 +204,7 @@
 <div id="buttonbar">
     <button id="incbutton" onclick="incFontSize()">+</button>
     <button id="decbutton" onclick="decFontSize()">-</button>
-    <p style="color: gray">[ijwg]</p>
+    <p id="watermark">[ijwg]</p>
 </div>
 
 <script type="py" src="./main.py"></script>
@@ -250,19 +255,9 @@
     style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize + 2) + "px";
-
-    txt = document.getElementById("output");
-    style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
-    currentSize = parseFloat(style);
-    txt.style.fontSize = (currentSize + 2) + "px";
 }
     function decFontSize() {
     txt = document.getElementById("input");
-    style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
-    currentSize = parseFloat(style);
-    txt.style.fontSize = (currentSize - 2) + "px";
-
-    txt = document.getElementById("output");
     style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize - 2) + "px";
