@@ -16,9 +16,23 @@
       color: white;
       font-family: NotoSans;
     }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: gray; 
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: white;
+        cursor: default;
+    }
 </style>
 <body>
-<div class="centered" scroll="no">
+<div class="centered">
     <p>Write something and then click 'Play'.<br>Polcompistan High will load here with your compiled boyMOD.</p>
 </div>
 </body>
