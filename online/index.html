@@ -47,6 +47,11 @@
         column-gap: 10px;
         padding: 10px 0;
     }
+    @media (max-width: 680px) {
+        .hidden-mobile {
+          display: none;
+        }
+      }
     #editorlabel {
         margin-right: auto;
         color: lightgray;
@@ -179,7 +184,7 @@
         <img src="./images/polheart.png" style="margin: 0 0 0 6px" height=15px>
     </button>
 
-    <p id="editorlabel">BoyMOD goes here 🠟🠟🠟</p>
+    <p id="editorlabel" class="hidden-mobile">BoyMOD goes here 🞃🞃🞃</p>
 
     <button id="savebutton" onclick="save()">
         Save .boymod
