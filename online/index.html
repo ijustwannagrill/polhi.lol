@@ -171,6 +171,11 @@
             input = document.getElementById("input");
             input.innerHTML = code;
         }
+
+        if (window.screen.width < 680) {
+            var button = document.getElementById("savebutton");
+            button.innerHTML = 'Save <img src="https://polhi.lol/online/images/boymod.png" style="margin: 0 0 0 6px" height=15px>';
+        }
     });
 </script>
     
