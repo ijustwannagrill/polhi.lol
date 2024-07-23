@@ -64,9 +64,16 @@
       }
     #editorlabel {
         margin-right: auto;
-        color: lightgray;
         margin-top: auto;
         margin-bottom: auto;
+        height: 26px;
+        width: auto;
+        user-drag: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
     }
     textarea {
         white-space: pre-wrap;
@@ -217,7 +224,7 @@
         <img src="./images/polheart.png" style="margin: 0 0 0 6px" height=15px>
     </button>
 
-    <img id="editorlabel" class="hidden-mobile" src="./images/editorlabel.png" height="26px" width="auto">
+    <img id="editorlabel" class="hidden-mobile" src="./images/editorlabel.png">
 
     <button id="savebutton" onclick="save()">
         Save .boymod
