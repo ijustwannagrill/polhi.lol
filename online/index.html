@@ -183,7 +183,7 @@
         let params = new URLSearchParams(document.location.search);
         let code = params.get("b");
         if (code != null) {
-            code = decodeURI(code);
+            code = decodeURIComponent(code);
             
             input = document.getElementById("input");
             input.innerHTML = code;
@@ -273,7 +273,7 @@
 <script>
     function share(){
         var text = document.getElementById("input").value;
-        link = "https://polhi.lol/online/?b=" + encodeURI(text);
+        link = "https://polhi.lol/online/?b=" + encodeURIComponent(text);
         navigator.clipboard.writeText(link);
 
         var button = document.getElementById("sharebutton");
