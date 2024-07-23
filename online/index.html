@@ -27,6 +27,16 @@
         color: inherit;
         text-decoration: inherit;
     }
+    #logo {
+        width: 340px;
+        height: auto;
+        user-drag: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
     #gamecontainer {
         display: flex;
         align-items: center;
@@ -175,9 +185,27 @@
         if (window.screen.width < 680) {
             var button = document.getElementById("savebutton");
             button.innerHTML = 'Save <img src="https://polhi.lol/online/images/boymod.png" style="margin: 0 0 0 6px" height=15px>';
+
+            var container = document.getElementById("gamecontainer");
+            container.style.position = "relative";
+            container.style.overflow = "hidden";
+            container.style.width = "100%";
+            container.style.paddingTop = "75%";
+
+            var game = document.getElementById("gameframe");
+            game.style.position = "absolute";
+            game.style.resize = "none";
+            game.style.width = "100%";
+            game.style.height = "100%";
+            game.style.top = 0;
+            game.style.bottom = 0;
+            game.style.left = 0;
+            game.style.right = 0;
         }
     });
 </script>
+
+<img id="logo" class="hidden-mobile" src="https://polhi.lol/online/images/logo.png">
     
 <div id="gamecontainer">
     <iframe id="gameframe"src="./placeholder" scroll="no"></iframe>
