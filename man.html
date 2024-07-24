@@ -62,6 +62,22 @@
 
 <title>BoyMODder Manual</title>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let params = new URLSearchParams(document.location.search);
+        let code = params.get("from");
+        
+        if (code == "editor") {
+            hide = document.getElementsByClassName("hidden-online");
+            
+            while(hide.length > 0) {
+                hide[0].remove();
+            }
+        }
+    });
+</script>
+
+<div class="hidden-online">
 <h3 style="color:#efe894">### NOTE: ###</h3>
 
 <span style="color:#efe894">
@@ -71,6 +87,7 @@
     <p>You can find the .polhi file in the /resources/app/ folder if using the executables.</p>
 </span>
 <br>
+</div>
 
 <h2><span class="hash">###</span> BASIC USAGE GUIDE: <span class="hash">###</span></h2>
 
@@ -122,6 +139,7 @@
 <p>>SCENE {NAME} - specify the start of a scene</p>
 <br>
 
+<div class="hidden-online">
 <div id="setting-mod-info-automagically" class="vert">
     <h3><span class="hash">##</span> Setting Mod Info Automagically: <span class="hash">##</span></h3>
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('setting-mod-info-automagically');" />
@@ -131,6 +149,7 @@
 <p>>AUTHOR {YOU} - set the author of your mod</p>
 <p>>DESC {TEXT} or >DESCRIPTION {TEXT}  - set the description of your mod</p>
 <br>
+</div>
 
 <p style="color:gray">-</p>
 <p style="color:gray">[ijustwannagrill]</p>
