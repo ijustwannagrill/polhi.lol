@@ -5,10 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/bm_gear_border.png">
-    <link rel="stylesheet" href="index.css">
     <title>BoyMODder online</title>
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
+
+<style>
+    @import "index.css";
+</style>
 
 <body>
 
@@ -26,7 +29,7 @@
         }
 
         // Change UI for mobile users, non-desktop site
-        if (window.innerWidth <= screen.availWidth) {
+        if (window.innerWidth < screen.availWidth) {
             var button = document.getElementById("savebutton");
             button.innerHTML = 'Save <img src="./images/boymod.png" style="margin: 0 0 0 6px" height=15px>';
 
