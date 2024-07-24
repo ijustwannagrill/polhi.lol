@@ -5,13 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/bm_gear_border.png">
+    <link rel="stylesheet" href="index.css">
     <title>BoyMODder online</title>
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
-
-<style>
-    @import "index.css";
-</style>
 
 <body>
 
@@ -108,7 +105,7 @@
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
- }
+    }
 </script>
 
 <!-- Share mod -->
@@ -146,14 +143,14 @@
     style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize + 2) + "px";
-}
+    }
     // Decrease size by 2px
     function decFontSize() {
     txt = document.getElementById("input");
     style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize - 2) + "px";
-}
+    }
 </script>
 
 </body>
