@@ -32,7 +32,7 @@
         }
 
         // Change UI for mobile users, non-desktop site
-        if (window.innerWidth < screen.availWidth) {
+        if (window.innerWidth < 680 && window.innerWidth < screen.availWidth) {
             var container = document.getElementById("gamecontainer");
             container.style.position = "relative";
             container.style.overflow = "hidden";
