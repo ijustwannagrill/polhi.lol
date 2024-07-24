@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/png" href="/bm_gear_border.png">
 <title>BoyMODder online</title>
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 
 <style>
@@ -176,10 +176,13 @@
         margin-bottom: auto;
     }
 </style>
+
 <body>
 
+<!-- Setup -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Import mod if URL parameter present
         let params = new URLSearchParams(document.location.search);
         let code = params.get("b");
         if (code != null) {
@@ -189,27 +192,26 @@
             input.innerHTML = code;
         }
 
-        if (window.screen.width < 680) {
+        // Change UI for mobile users, non-desktop site
+        if (window.innerWidth <= screen.availWidth) {
             var button = document.getElementById("savebutton");
             button.innerHTML = 'Save <img src="https://polhi.lol/online/images/boymod.png" style="margin: 0 0 0 6px" height=15px>';
 
-            if (window.innerWidth <= screen.availWidth) {
-                var container = document.getElementById("gamecontainer");
-                container.style.position = "relative";
-                container.style.overflow = "hidden";
-                container.style.width = "100%";
-                container.style.paddingTop = "75%";
+            var container = document.getElementById("gamecontainer");
+            container.style.position = "relative";
+            container.style.overflow = "hidden";
+            container.style.width = "100%";
+            container.style.paddingTop = "75%";
 
-                var game = document.getElementById("gameframe");
-                game.style.position = "absolute";
-                game.style.resize = "none";
-                game.style.width = "100%";
-                game.style.height = "100%";
-                game.style.top = 0;
-                game.style.bottom = 0;
-                game.style.left = 0;
-                game.style.right = 0;
-            }
+            var game = document.getElementById("gameframe");
+            game.style.position = "absolute";
+            game.style.resize = "none";
+            game.style.width = "100%";
+            game.style.height = "100%";
+            game.style.top = 0;
+            game.style.bottom = 0;
+            game.style.left = 0;
+            game.style.right = 0;
         }
     });
 </script>
@@ -256,32 +258,36 @@
 
 <script type="py" src="./main.py"></script>
 
+<!-- Save mod as .boymod -->
 <script>
     function save(){
         var text = document.getElementById("input").value;
-        text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
-        var blob = new Blob([text], { type: "text/plain"});
+        text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks
+        var blob = new Blob([text]);
         var anchor = document.createElement("a");
         anchor.download = "project.boymod";
         anchor.href = window.URL.createObjectURL(blob);
         anchor.target ="_blank";
-        anchor.style.display = "none"; // just to be safe!
+        anchor.style.display = "none"; // Just to be safe
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
  }
 </script>
 
+<!-- Share mod -->
 <script>
     function share(){
         var text = document.getElementById("input").value;
-        link = "https://polhi.lol/online/?b=" + encodeURIComponent(text);
-        navigator.clipboard.writeText(link);
+        link = "https://polhi.lol/online/?b=" + encodeURIComponent(text); // Make one giant URL parameter
+        navigator.clipboard.writeText(link); // Copy to clipboard
 
+        // Make the button look pretty
         var button = document.getElementById("sharebutton");
         button.style = "background-color: #507749;"
         button.innerHTML = "Copied to clipboard!";
-        
+
+        // Revert button to normal
         setTimeout(function() {
             var button = document.getElementById("sharebutton");
             button.style = ""
@@ -296,13 +302,16 @@
     }
 </script>
 
+<!-- Adjust the size of the text in the input box -->
 <script>
+    // Increase size by 2px
     function incFontSize() {
     txt = document.getElementById("input");
     style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
     currentSize = parseFloat(style);
     txt.style.fontSize = (currentSize + 2) + "px";
 }
+    // Decrease size by 2px
     function decFontSize() {
     txt = document.getElementById("input");
     style = window.getComputedStyle(txt, null).getPropertyValue("font-size");
