@@ -154,6 +154,17 @@
                 hide[0].remove();
             }
         }
+
+	const thisURL = window.location.href;
+        const section = thisURL.slice(thisURL.indexOf("#") + 1);
+        const element = document.getElementById(section);
+        
+        setTimeout(function () {
+           element.scrollIntoView({
+               behavior: "smooth",
+               block: "start",
+           });
+        }, 300);
     });
 </script>
 
