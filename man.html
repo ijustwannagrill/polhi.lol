@@ -144,6 +144,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+	// If we're coming from the editor...
         let params = new URLSearchParams(document.location.search);
         let source = params.get("from");
         
@@ -151,10 +152,20 @@
             hide = document.getElementsByClassName("hidden-online");
             
             while(hide.length > 0) {
-                hide[0].remove();
+                hide[0].remove(); // Remove the irrelevant content
             }
         }
 
+	// Load sprite tables
+	fetch("/man/spritetables")
+    	.then(data => {
+      		return data.text()
+    	})
+    	.then( data => {
+      		document.getElementById("include-tables").innerHTML = data;
+    	});
+
+	// Scroll to section if in URL
 	const thisURL = window.location.href;
 	console.log(thisURL);
         const section = thisURL.slice(thisURL.indexOf("#") + 1);
@@ -249,20 +260,6 @@
 
 <p style="color:gray">-</p>
 <p style="color:gray">[ijustwannagrill]</p>
-
-<script>
-	window.onload = () => {
-    	fetch('/man/spritetables')
-			
-    	.then(data => {
-      		return data.text()
-    	})
-			
-    	.then( data => {
-      		document.getElementById("include-tables").innerHTML = data;
-    	})
-}
-</script>
 
 <script>
     function link(section) {
