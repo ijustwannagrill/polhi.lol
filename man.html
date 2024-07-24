@@ -1,12 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="/bm_gear_border.png">
+</head>
+
+<style>
+    @font-face {
+        font-family: NotoSans;
+        src: url(./online/fonts/NotoSansVar.ttf);
+    }
+    body {
+        background-color: #111111;
+        font-family: NotoSans;
+    }
+    p {
+        color: white;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: gray; 
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: white;
+        cursor: default;
+    }
+</style>
+    
+<body>
+
 <title>BoyMODder Manual</title>
-<p>## NOTE: ##</p>
+
+<h2>## NOTE: ##</h2>
 <br>
 <p>BoyMODder is only compatible with Windows, Linux and .ZIP versions of PolHi!</p>
 <p>BoyMODder is intended for use with PolHi Base and PolHi: Love Story.</p>
 <p>Usage on other PolHi games may work but may break easily due to different assets.</p>
 <p>You can find the .polhi file in the /resources/app/ folder if using the executables.</p>
 <br>
-<p>## BASIC USAGE GUIDE: ##</p>
+<h2>## BASIC USAGE GUIDE: ##</h2>
 <br>
 <p>## Essentials: ##</p>
 <p>>INT. {BG} - set background</p>
@@ -16,7 +54,7 @@
 <p>[{DIALOGUE}] or *{DIALOGUE}* - narration</p>
 <p>< - comments (invisible to interpreter)</p>
 <br>
-<p>## Manual Character Control: ##</p>
+<h2>## Manual Character Control: ##</h2>
 <p>>{CHARACTER} FEELS {EMOTION} set emotion without saying anything</p>
 <p>>{CHARACTER} ENTERS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT} - put a character on the screen at the position specified (transition) (not specifying a position will just join automatically) (recognized by autojoiner)</p>
 <p>>{CHARACTER} EXITS - make a character leave the screen (transition) (ignored by autojoiner)</p>
@@ -26,18 +64,22 @@
 <p>>CLEAR - remove all characters from screen (no transition)</p>
 <p>>NO AUTOJOIN - useful for joining your characters to the screen manually or for monologues (needs to be issued for every scene)</p>
 <br>
-<p>## Effects: ##</p>
+<h2>## Effects: ##</h2>
 <p>>SHOCK - use shock effect</p>
 <p>>BLACKOUT - use blackout effect (useful for transitions)</p>
 <br>
-<p>## Scene Management: ##</p>
+<h2>## Scene Management: ##</h2>
 <p>>GOTO {NAME} - go to target scene</p>
 <p>>SCENE {NAME} - specify the start of a scene</p>
 <br>
-<p>## Setting Mod Info Automagically: ##</p>
+<h2>## Setting Mod Info Automagically: ##</h2>
 <p>>TITLE {TITLE} - set the title of your mod</p>
 <p>>AUTHOR {YOU} - set the author of your mod</p>
 <p>>DESC {TEXT} or >DESCRIPTION {TEXT}  - set the description of your mod</p>
 <br>
-<p>-</p>
-<p>[ijustwannagrill]</p>
+<p style="color:gray">-</p>
+<p style="color:gray">[ijustwannagrill]</p>
+
+</body>
+
+</html>
