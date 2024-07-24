@@ -836,7 +836,7 @@ def charEmotion(char, soyLine):
         if "Erwin" in toBeAdded:
             onStageCount = charJoin("Erwin", "auto", onStageCount, "y")
 
-def specPos(char, posLine, onStageCount):
+def specPos(char, posLine, onStageCount, yn):
     char = char.capitalize()
     twordCheck = ['FAR', 'NEAR']
     posList = ['FARLEFT', 'FAR LEFT', 'NEARLEFT', 'NEAR LEFT', 'NEARRIGHT', 'NEAR RIGHT', 'FARRIGHT', 'FAR RIGHT']
@@ -848,13 +848,13 @@ def specPos(char, posLine, onStageCount):
         #sys.tracebacklimit = 0
         #raise TypeError(f"{posLine}: {posLine.split()[2]}: position invalid!")
     elif posLine.split()[2].upper() == "FARLEFT":
-        onStageCount = charJoin(char, "farleft", onStageCount, "y")
+        onStageCount = charJoin(char, "farleft", onStageCount, yn)
     elif posLine.split()[2].upper() == "NEARLEFT":
-        onStageCount = charJoin(char, "nearleft", onStageCount, "y")
+        onStageCount = charJoin(char, "nearleft", onStageCount, yn)
     elif posLine.split()[2].upper() == "NEARRIGHT":
-        onStageCount = charJoin(char, "nearright", onStageCount, "y")
+        onStageCount = charJoin(char, "nearright", onStageCount, yn)
     elif posLine.split()[2].upper() == "FARRIGHT":
-        onStageCount = charJoin(char, "farright", onStageCount, "y")
+        onStageCount = charJoin(char, "farright", onStageCount, yn)
 
     elif not posLine.split()[2].upper() + posLine.split()[3].upper() in posList:
         output_div = document.querySelector("#output")
@@ -863,13 +863,13 @@ def specPos(char, posLine, onStageCount):
         #sys.tracebacklimit = 0
         #raise TypeError(f"{posLine}: {posLine.split()[2] + " " + posLine.split()[3]}: position invalid!")
     elif posLine.split()[2].upper() + posLine.split()[3].upper() == "FARLEFT":
-        onStageCount = charJoin(char, "farleft", onStageCount, "y")
+        onStageCount = charJoin(char, "farleft", onStageCount, yn)
     elif posLine.split()[2].upper() + posLine.split()[3].upper() == "NEARLEFT":
-        onStageCount = charJoin(char, "nearleft", onStageCount, "y")
+        onStageCount = charJoin(char, "nearleft", onStageCount, yn)
     elif posLine.split()[2].upper() + posLine.split()[3].upper() == "NEARRIGHT":
-        onStageCount = charJoin(char, "nearright", onStageCount, "y")
+        onStageCount = charJoin(char, "nearright", onStageCount, yn)
     elif posLine.split()[2].upper() + posLine.split()[3].upper() == "FARRIGHT":
-        onStageCount = charJoin(char, "farright", onStageCount, "y")
+        onStageCount = charJoin(char, "farright", onStageCount, yn)
     return onStageCount
 
 def scanUnCalled(sceneNum):
