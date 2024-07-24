@@ -156,7 +156,16 @@
 
 <script>
     function link(section) {
-        var url = location.protocol + "//" + location.host + "/man#" + section;
+        var url = location.protocol + "//" + location.host + "/man";
+
+        let params = new URLSearchParams(document.location.search);
+        let source = params.get("from");
+
+        if (source != null) {
+            url += "?from=" + source;
+        }
+        url += "#" + section;
+        
         navigator.clipboard.writeText(url);
 
         if (document.getElementById("notify") == null) {
