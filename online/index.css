@@ -1,0 +1,165 @@
+@font-face {
+	font-family: NotoSans;
+	src: url(./fonts/NotoSansVar.ttf);
+}
+@font-face {
+	font-family: Sono;
+	src: url(./fonts/SonoVar.ttf);
+}
+body {
+	background-color: #383838;
+	color: white;
+	font-family: NotoSans;
+}
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+#logo {
+	width: 340px;
+	height: auto;
+	user-drag: none;
+	-webkit-user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+#gamecontainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: auto;
+	background-color: #111111;
+	border-radius: 5px;
+}
+#gameframe {
+	width: 480px;
+	height: 360px;
+	border: none;
+	resize: both;
+}
+#buttonbar {
+	display: flex;
+	align-items: left;
+	column-gap: 10px;
+	padding: 10px 0;
+}
+@media (max-width: 680px) {
+	.hidden-mobile {
+	  display: none;
+	}
+  }
+#editorlabel {
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	height: 26px;
+	width: auto;
+	user-drag: none;
+	-webkit-user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+textarea {
+	white-space: pre-wrap;
+	resize: vertical;
+	border: none;
+	outline: none;
+	width: 100%;
+	height: 500px;
+	background-color: #1e1e1e;
+	color: white;
+	border-radius: 5px;
+	font-family: Sono;
+	font-size: 14px;
+}
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+	background: gray; 
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: white;
+	cursor: default;
+}
+button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	padding: 8px 15px;
+	border-radius: 5px;
+	transition-duration: 0.3s;
+	cursor: pointer;
+	font-family: NotoSans;
+}
+#playbutton {
+	background-color: #3f2a2c;
+	border: 1px solid #77494e;
+	margin-right: auto;
+}
+#playbutton:hover {
+	background-color: #77494e;
+}
+#savebutton {
+	background-color: #2a343f;
+	border: 1px solid #495d77;
+}
+#savebutton:hover {
+	background-color: #495d77;
+}
+#sharebutton {
+	background-color: #2f3f2a;
+	border: 1px solid #507749;
+}
+#sharebutton:hover {
+	background-color: #507749;
+}
+#manbutton {
+	background-color: #3f3f2a;
+	border: 1px solid #777349;
+}
+#manbutton:hover {
+	background-color: #777349;
+}
+#incbutton {
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	background-color: #1e1e1e;
+	border: 1px solid gray;
+}
+#incbutton:hover {
+	background-color: gray;
+}
+#decbutton {
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	background-color: #1e1e1e;
+	border: 1px solid gray;
+	margin-right: auto;
+}
+#decbutton:hover {
+	background-color: gray;
+}
+#output {
+	background-color: #77494e;
+	color: white;
+	font-family: Sono;
+	border-radius: 5px;
+	font-size: 14px;
+}
+#watermark {
+	color: gray;
+	margin-top: auto;
+	margin-bottom: auto;
+}
