@@ -19,7 +19,7 @@
         display: flex;
         align-items: left;
         column-gap: 10px;
-	padding: 10px 0;
+	    padding: 10px 0;
     }
     h2 {
         color: white;
@@ -33,10 +33,15 @@
     }
     .link {
         width: 16px;
-	height: 16px;
-	margin-top: auto;
-	margin-bottom: auto;
+	    height: 16px;
+	    margin-top: auto;
+	    margin-bottom: auto;
     }
+    #notify {
+        color: gray;
+        margin-top: auto;
+	    margin-bottom: auto;
+        
     ::-webkit-scrollbar {
         width: 10px;
     }
@@ -135,14 +140,17 @@
         var url = location.protocol + "//" + location.host + "/man#" + section;
         navigator.clipboard.writeText(url);
 
-        var thisDiv = document.getElementById(section);
-        var notify = document.createElement('div');
-        notify.innerHTML = "<p style='color:gray;margin-top:auto;margin-bottom:auto;'>Copied to clipboard!</p>";
-        thisDiv.appendChild(notify);
+        if (document.getElementById("notify") == null) {
+            var thisDiv = document.getElementById(section);
+            var notify = document.createElement('div');
+            notify.setAttribute("id", "notify");
+            notify.innerText = "Copied to clipboard!";
+            thisDiv.appendChild(notify);
 
-        setTimeout(function() {
-            notify.remove()
-        }, 3000);
+            setTimeout(function() {
+                notify.remove()
+            }, 3000);
+        }
     }
 </script>
 
