@@ -1121,7 +1121,7 @@ def compile_boymod(event):
 
     output_div = document.querySelector("#output")
     output_div.innerText = ""
-    output_div.style= ""
+    output_div.style= f"font-size: {input_text.style.fontSize}"
 
     inject = []
 
@@ -1698,7 +1698,7 @@ def compile_boymod(event):
 
     if terminated != True:
         gameframe = document.querySelector("#output")
-        gameframe.style = "background-color: #777349"
+        gameframe.style.backgroundColor = "#777349"
         
         print("Compilation success... Ready for Turbowarp!")
 
