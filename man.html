@@ -156,15 +156,18 @@
         }
 
 	const thisURL = window.location.href;
+	console.log(thisURL);
         const section = thisURL.slice(thisURL.indexOf("#") + 1);
+	console.log(section);
         const element = document.getElementById(section);
+	console.log(element);
         
         setTimeout(function () {
            element.scrollIntoView({
                behavior: "smooth",
                block: "start",
            });
-        }, 500);
+        }, 300);
     });
 </script>
 
