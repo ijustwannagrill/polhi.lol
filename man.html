@@ -15,7 +15,16 @@
         font-family: NotoSans;
         color: lightgray;
     }
-    h {
+    .vert {
+        display: flex;
+        align-items: left;
+        column-gap: 10px;
+	    padding: 10px 0;
+    }
+    h2 {
+        color: white;
+    }
+    h3 {
         color: white;
     }
     span.hash {
@@ -23,7 +32,7 @@
         color: #495d77;
     }
     .link {
-        width: 30px;
+        width: 16px;
     }
     ::-webkit-scrollbar {
         width: 10px;
@@ -58,9 +67,9 @@
 
 <br>
 
-<div id="essentials">
+<div id="essentials" class="vert">
     <h3><span class="hash">##</span> Essentials: <span class="hash">##</span></h3>
-    <a href="/man#essentials"><img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" /></a>
+    <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('essentials');" />
 </div>
 
 <p>>INT. {BG} - set background</p>
@@ -71,9 +80,9 @@
 <p>< - comments (invisible to interpreter)</p>
 <br>
 
-<div id="manual-character-control">
+<div id="manual-character-control" class="vert">
     <h3><span class="hash">##</span> Manual Character Control: <span class="hash">##</span></h3>
-    <a href="/man#manual-character-control"><img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" /></a>
+    <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('manual-character-control');" />
 </div>
 
 <p>>{CHARACTER} FEELS {EMOTION} set emotion without saying anything</p>
@@ -86,27 +95,27 @@
 <p>>NO AUTOJOIN - useful for joining your characters to the screen manually or for monologues (needs to be issued for every scene)</p>
 <br>
 
-<div id="effects">
+<div id="effects" class="vert">
     <h3><span class="hash">##</span> Effects: <span class="hash">##</span></h3>
-    <a href="/man#effects"><img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" /></a>
+    <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('effects');" />
 </div>
 
 <p>>SHOCK - use shock effect</p>
 <p>>BLACKOUT - use blackout effect (useful for transitions)</p>
 <br>
 
-<div id="scene-management">
+<div id="scene-management" class="vert">
     <h3><span class="hash">##</span> Scene Management: <span class="hash">##</span></h3>
-    <a href="/man#scene-management"><img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" /></a>
+    <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('scene-management');" />
 </div>
 
 <p>>GOTO {NAME} - go to target scene</p>
 <p>>SCENE {NAME} - specify the start of a scene</p>
 <br>
 
-<div id="setting-mod-info-automagically">
+<div id="setting-mod-info-automagically" class="vert">
     <h3><span class="hash">##</span> Setting Mod Info Automagically: <span class="hash">##</span></h3>
-    <a href="/man#setting-mod-info-automagically"><img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" /></a>
+    <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('setting-mod-info-automagically');" />
 </div>
 
 <p>>TITLE {TITLE} - set the title of your mod</p>
@@ -116,6 +125,22 @@
 
 <p style="color:gray">-</p>
 <p style="color:gray">[ijustwannagrill]</p>
+
+<script>
+    function link(section) {
+        var url = window.location.href + "#" + section;
+        navigator.clipboard.writeText(url);
+
+        var thisDiv = document.getElementById(section);
+        var notify = document.createElement('div');
+        notify.innerHTML = "<p style='color:gray'>Copied to clipboard!</p>";
+        thisDiv.appendChild(notify);
+
+        setTimeout(function() {
+            notify.remove()
+        }, 3000);
+    }
+</script>
 
 </body>
 
