@@ -113,6 +113,12 @@ span.subhash {
 	background-color:#111111;
 	border-radius: 5px;
 }
+@media (max-width: 680px) {
+	.tg img {
+	    width: 100px;
+	    height: 100px;
+	}
+  }
 ::-webkit-scrollbar {
 	width: 10px;
 }
