@@ -14,6 +14,11 @@
       align-items: center;
       height: 200px;
     }
+    @media (min-width: 680px) {
+      .hidden-desktop {
+	  display: none;
+      }
+    }
     p {
       color: white;
       font-family: NotoSans;
@@ -37,7 +42,7 @@
 <body>
     
 <div class="centered">
-    <p>Write something and then click 'Play'.<br><br>Polcompistan High will load here with your compiled boyMOD.</p>
+    <p><img class="hidden-desktop" src="./images/logo.png" width=80% height=auto>Write something and then click 'Play'.<br><br>Polcompistan High will load here with your compiled boyMOD.</p>
 </div>
     
 </body>
