@@ -25,14 +25,11 @@
             input.innerHTML = code;
         }
 
-        // Shorten save button text if screen is small
-        if (window.innerWidth < screen.availWidth || window.innerWidth < 680) {
+        // Change UI if screen is small
+        if (window.innerWidth < 680) {
             var button = document.getElementById("savebutton");
             button.innerHTML = 'Save <img src="./images/boymod.png" style="margin: 0 0 0 6px" height=15px>';
-        }
-
-        // Change UI for mobile users, non-desktop site
-        if (window.innerWidth < screen.availWidth && window.screen.width < 680) {
+            
             var container = document.getElementById("gamecontainer");
             container.style.position = "relative";
             container.style.overflow = "hidden";
