@@ -554,17 +554,22 @@
         
         navigator.clipboard.writeText(url);
 
-        if (document.getElementById("notify") == null) {
-            var thisDiv = document.getElementById(section);
-            var notify = document.createElement('div');
-            notify.setAttribute("id", "notify");
-            notify.innerText = "Copied to clipboard!";
-            thisDiv.appendChild(notify);
-
-            setTimeout(function() {
-                notify.remove()
-            }, 3000);
+	var notify = document.getElementById("notify");
+        if (document.getElementById("notify") != null) {
+            notify.remove();
         }
+        
+        var thisDiv = document.getElementById(section);
+        var notify = document.createElement("div");
+        notify.setAttribute("id", "notify");
+        notify.innerText = "Copied to clipboard!";
+        thisDiv.appendChild(notify);
+
+        setTimeout(function() {
+            if (document.getElementById("notify") != null) {
+                notify.remove();
+            }
+        }, 3000);
     }
 </script>
 
