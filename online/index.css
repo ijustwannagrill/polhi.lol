@@ -74,6 +74,7 @@ textarea {
 	color: white;
 	border-radius: 5px;
 	font-family: Sono;
+	font-size: 16px;
 }
 ::-webkit-scrollbar {
 	width: 10px;
