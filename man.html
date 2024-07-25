@@ -56,62 +56,85 @@
 <br>
 
 <div id="essentials" class="vert">
-    <h3><span class="hash">##</span> Essentials: <span class="hash">##</span></h3>
+    <h3><span class="hash">##</span> Essentials <span class="hash">##</span></h3>
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('essentials');" />
 </div>
 
-<p>>INT. {BG} - set background</p>
-<p>>MUSIC {TRACK} - play any track from the original PolHi OST (https://soundcloud.com/cenzo-e_e/sets/polcompistan-high-ost)</p>
-<p>{CHARACTER}: {DIALOGUE} - make a character say something</p>
-<p>{CHARACTER} (EMOTION): {DIALOGUE} - make a character say something after switching emotions</p>
-<p>[{DIALOGUE}] or *{DIALOGUE}* - narration</p>
-<p>< - comments (invisible to interpreter)</p>
+<p><span class="code">>BACKGROUND {BG}</span> - set background</p>
+<p><span class="code">>MUSIC {TRACK}</span> - play any track from the <a href="https://soundcloud.com/cenzo-e_e/sets/polcompistan-high-ost" target="_blank" rel="noopener noreferrer">original PolHi OST</a></p>
+<p><span class="code">{CHARACTER}: {DIALOGUE}</span> - make a character say something</p>
+<p><span class="code">{CHARACTER} (EMOTION): {DIALOGUE}</span> - make a character say something after switching emotions</p>
+<p><span class="code">[{DIALOGUE}] or *{DIALOGUE}*</span> - narration</p>
+<p><span class="code"><</span> - comments (invisible to interpreter)</p>
 <br>
 
 <div id="manual-character-control" class="vert">
-    <h3><span class="hash">##</span> Manual Character Control: <span class="hash">##</span></h3>
+    <h3><span class="hash">##</span> Manual Character Control <span class="hash">##</span></h3>
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('manual-character-control');" />
 </div>
 
-<p>>{CHARACTER} FEELS {EMOTION} set emotion without saying anything</p>
-<p>>{CHARACTER} ENTERS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT} - put a character on the screen at the position specified (transition) (not specifying a position will just join automatically) (recognized by autojoiner)</p>
-<p>>{CHARACTER} EXITS - make a character leave the screen (transition) (ignored by autojoiner)</p>
-<p>>{CHARACTER} APPEARS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT} - make character instantly appear on screen (no transition) (ignored by autojoiner)</p>
-<p>>{CHARACTER} DISAPPEARS - instantly remove character from screen (no transition) (ignored by autojoiner)</p>
-<p>>TOP {CHARACTER} - bring character to front layer</p>
-<p>>CLEAR - remove all characters from screen (no transition)</p>
-<p>>NO AUTOJOIN - useful for joining your characters to the screen manually or for monologues (needs to be issued for every scene)</p>
+<p><span class="code">>{CHARACTER} FEELS {EMOTION}</span> - set emotion without saying anything</p>
+<p><span class="code">>{CHARACTER} ENTERS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT}</span> - put a character on the screen at the position specified (transition) (not specifying a position will just join automatically) (recognized by autojoiner)</p>
+<p><span class="code">>{CHARACTER} EXITS</span> - make a character leave the screen (transition) (ignored by autojoiner)</p>
+<p><span class="code">>{CHARACTER} APPEARS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT}</span> - make character instantly appear on screen (no transition) (ignored by autojoiner)</p>
+<p><span class="code">>{CHARACTER} DISAPPEARS</span> - instantly remove character from screen (no transition) (ignored by autojoiner)</p>
+<p><span class="code">>TOP {CHARACTER}</span> - bring character to front layer</p>
+<p><span class="code">>CLEAR</span> - remove all characters from screen (no transition)</p>
+<p><span class="code">>NO AUTOJOIN</span> - useful for joining your characters to the screen manually or for monologues (needs to be issued for every scene)</p>
 <br>
 
 <div id="effects" class="vert">
-    <h3><span class="hash">##</span> Effects: <span class="hash">##</span></h3>
+    <h3><span class="hash">##</span> Effects <span class="hash">##</span></h3>
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('effects');" />
 </div>
 
-<p>>SHOCK - use shock effect</p>
-<p>>BLACKOUT - use blackout effect (useful for transitions)</p>
+<p><span class="code">>SHOCK</span> - use shock effect</p>
+<p><span class="code">>BLACKOUT</span> - use blackout effect (useful for transitions)</p>
 <br>
 
 <div id="scene-management" class="vert">
-    <h3><span class="hash">##</span> Scene Management: <span class="hash">##</span></h3>
+    <h3><span class="hash">##</span> Scene Management <span class="hash">##</span></h3>
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('scene-management');" />
 </div>
 
-<p>>GOTO {NAME} - go to target scene</p>
-<p>>SCENE {NAME} - specify the start of a scene</p>
+<p><span class="code">>GOTO {NAME}</span> - go to target scene</p>
+<p><span class="code">>SCENE {NAME}</span> - specify the start of a scene</p>
 <br>
 
 <div class="hidden-online">
 <div id="setting-mod-info-automagically" class="vert">
-    <h3><span class="hash">##</span> Setting Mod Info Automagically: <span class="hash">##</span></h3>
+    <h3><span class="hash">##</span> Setting Mod Info Automagically <span class="hash">##</span></h3>
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('setting-mod-info-automagically');" />
 </div>
 
-<p>>TITLE {TITLE} - set the title of your mod</p>
-<p>>AUTHOR {YOU} - set the author of your mod</p>
-<p>>DESC {TEXT} or >DESCRIPTION {TEXT}  - set the description of your mod</p>
+<p><span class="code">>TITLE {TITLE}</span> - set the title of your mod</p>
+<p><span class="code">>AUTHOR {YOU}</span> - set the author of your mod</p>
+<p><span class="code">>DESC {TEXT} or >DESCRIPTION {TEXT}</span> - set the description of your mod</p>
 <br>
 </div>
+
+<h2><span class="hash">###</span> ASSETS: <span class="hash">###</span></h2>
+
+<p>
+    When setting backgrounds, music, or character sprites, you'll need to know what
+    resources you have at your disposal. Said resources are organized by section here.
+</p>
+
+<br>
+
+<div id="sprites" class="vert">
+    <h3><span class="hash">##</span> Sprites <span class="hash">##</span></h3>
+    <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('sprites');" />
+</div>
+
+<p>
+    Below is a list of the character sprites recognized by the compiler.
+    Various words that can be used to reference a sprite are listed in the bottom left.
+</p>
+
+<center>
+    <p style="color:gray">[ijustwannagrill]</p>
+</center>
 
 <div class="indent">
 
