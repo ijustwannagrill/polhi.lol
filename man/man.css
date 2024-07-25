@@ -15,6 +15,7 @@ body {
     display: inline-flex;
     align-items: left;
     column-gap: 10px;
+    flex-wrap: wrap;
 }
 h2 {
     color: white;
@@ -60,6 +61,9 @@ span.hash {
 }
 span.subhash {
     color: #507749;
+}
+a {
+    color: #82a6d6;
 }
 .table-background {
     display: flex;
