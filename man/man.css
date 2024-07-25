@@ -50,6 +50,11 @@ span.hash {
         border-radius: 5px;
         padding: 3px 5px;
 }
+@media (min-width: 680px) {
+    .code {
+        font-size: 15px;
+    }
+}
 .indent {
     margin: 0 auto;
     max-width: 1180px;
