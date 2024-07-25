@@ -37,6 +37,13 @@ span.hash {
 	margin-top: auto;
 	margin-bottom: auto;
 }
+.code {
+	background-color: #111111;
+    	color: white;
+    	font-family: Sono;
+        border-radius: 5px;
+        padding: 3px 5px;
+}
 .indent {
 	margin: 0 auto;
 	max-width: 1180px;
@@ -81,7 +88,7 @@ span.subhash {
 	font-family:NotoSans;
 	font-size:14px;
 	overflow:hidden;
-	padding:15px 15px;
+	padding:10px 10px;
 	word-break:normal;
 }
 .tg th {
