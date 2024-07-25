@@ -21,7 +21,7 @@ h2 {
     color: white;
 }
 @media (max-width: 680px) {
-    .h2 {
+    h2 {
         text-align: center;
     }
 }
