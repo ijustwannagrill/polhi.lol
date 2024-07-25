@@ -20,6 +20,11 @@ body {
 h2 {
     color: white;
 }
+@media (max-width: 680px) {
+    .h2 {
+        text-align: center;
+    }
+}
 h3 {
     color: white;
 }
