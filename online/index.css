@@ -75,6 +75,11 @@ textarea {
 	border-radius: 5px;
 	font-family: Sono;
 }
+@media (min-width: 680px) {
+	textarea {
+	  font-size: 15px;
+	}
+}
 ::-webkit-scrollbar {
 	width: 10px;
 }
