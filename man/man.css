@@ -10,6 +10,7 @@ body {
     background-color: #1e1e1e;
     font-family: NotoSans;
     color: lightgray;
+    line-height: 1.6em;
 }
 .vert {
     display: inline-flex;
