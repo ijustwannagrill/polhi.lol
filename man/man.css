@@ -65,18 +65,22 @@ span.hash {
 .code .red {
     color: #ea999b;
     text-decoration-line: underline;
+    cursor: pointer;
 }
 .code .blue {
     color: #a5c2f5;
     text-decoration-line: underline;
+    cursor: pointer;
 }
 .code .green {
     color: #b7d7a9;
     text-decoration-line: underline;
+    cursor: pointer;
 }
 .code .yellow {
     color: #fee49a;
     text-decoration-line: underline;
+    cursor: pointer;
 }
 .indent {
     margin: 0 auto;
