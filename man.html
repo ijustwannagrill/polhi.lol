@@ -1182,7 +1182,9 @@
     	audio.play();
         button.src = "/man/images/stop-hl.png";
         button.onclick = function() {stopaudio(this);};
-	audio.addEventListener("ended", function() {stopaudio(this);});
+	    audio.addEventListener("ended", function() {
+            stopaudio(button);
+        });
     }
     function stopaudio(button) {
         var audio = button.parentElement.getElementsByTagName('audio')[0];
@@ -1190,6 +1192,9 @@
         audio.currentTime = 0;
         button.src = "/man/images/play-hl.png";
         button.onclick = function() {playaudio(this);};
+        audio.removeEventListener("ended", function() {
+            stopaudio(button);
+        });
     }
 </script>
 
