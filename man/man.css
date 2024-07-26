@@ -53,6 +53,7 @@ span.hash {
     background-color: #111111;
         color: white;
         font-family: Sono;
+	font-style: normal;
         border-radius: 5px;
         padding: 3px 5px;
 }
@@ -60,6 +61,18 @@ span.hash {
     .code {
         font-size: 15px;
     }
+}
+.code .red {
+    color: #f26f7e;
+}
+.code .blue {
+    color: #74a8ed;
+}
+.code .green {
+    color: #8def7c;
+}
+.code .yellow {
+    color: #f4eb7f;
 }
 .indent {
     margin: 0 auto;
