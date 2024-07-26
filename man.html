@@ -1197,7 +1197,7 @@
             if (allaudio[i].duration > 0 && !allaudio[i].paused) {
                 var abutton = allaudio[i].parentElement.getElementsByTagName("img")[0];
                 stopaudio(abutton);
-                i -= 1;
+                break;
             }
         }
         
