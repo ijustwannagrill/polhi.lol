@@ -70,6 +70,9 @@ span.hash {
     }
 }
 span.subhash {
+    color: #77494e;
+}
+span.subhash2 {
     color: #507749;
 }
 a {
