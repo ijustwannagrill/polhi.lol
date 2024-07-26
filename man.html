@@ -1192,20 +1192,31 @@
 	
 <script>
     function playaudio(button) {
-		var audio = button.parentElement.getElementsByTagName('audio')[0];
+        var allaudio = document.getElementsByTagName("audio");
+        for (let i = 0; i < allaudio.length; i++) {
+            if (allaudio[i].duration > 0 && !allaudio[i].paused) {
+                var abutton = allaudio[i].parentElement.getElementById("audiocontrol");
+                stopaudio(abutton);
+                i -= 1;
+            }
+        }
+        
+        var audio = button.parentElement.getElementsByTagName("audio")[0];
     	audio.play();
         button.src = "/man/images/stop-hl.png";
         button.onclick = function() {stopaudio(this);};
+        
 	    audio.addEventListener("ended", function() {
             stopaudio(button);
         });
     }
     function stopaudio(button) {
-        var audio = button.parentElement.getElementsByTagName('audio')[0];
+        var audio = button.parentElement.getElementsByTagName("audio")[0];
     	audio.pause();
         audio.currentTime = 0;
         button.src = "/man/images/play-hl.png";
         button.onclick = function() {playaudio(this);};
+        
         audio.removeEventListener("ended", function() {
             stopaudio(button);
         });
