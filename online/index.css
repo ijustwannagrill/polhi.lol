@@ -63,7 +63,8 @@ a {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
-textarea {
+#input {
+	display: flex;
 	white-space: pre-wrap;
 	resize: vertical;
 	border: none;
