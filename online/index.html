@@ -165,6 +165,21 @@
     }
 </script>
 
+<script>
+    // Confirm user wants to unload tab if text has been entered
+    function onBeforeUnload(e) {
+    if (document.getElementById("input").value != "") {
+        e.preventDefault();
+        e.returnValue = "";
+        return;
+    }
+
+    delete e["returnValue"];
+}
+
+window.addEventListener("beforeunload", onBeforeUnload);
+</script>
+
 </body>
 
 </html>
