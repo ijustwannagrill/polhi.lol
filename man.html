@@ -1182,7 +1182,7 @@
     	audio.play();
         button.src = "/man/images/stop-hl.png";
         button.onclick = function() {stopaudio(this);};
-	button.onended = function() {stopaudio(this);};
+	button.onended = function() {button.parentElement.getElementsByTagName('audio')[0].play;};
     }
     function stopaudio(button) {
         var audio = button.parentElement.getElementsByTagName('audio')[0];
