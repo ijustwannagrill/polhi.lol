@@ -63,16 +63,16 @@ span.hash {
     }
 }
 .code .red {
-    color: #f26f7e;
+    color: #dd7c87;
 }
 .code .blue {
-    color: #74a8ed;
+    color: #7ea7dd;
 }
 .code .green {
-    color: #8def7c;
+    color: #90db83;
 }
 .code .yellow {
-    color: #f4eb7f;
+    color: #dbd37a;
 }
 .indent {
     margin: 0 auto;
