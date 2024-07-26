@@ -1178,17 +1178,23 @@
 
 <script>
     function playaudio(button) {
-		const audio = button.parentElement.getElementsByTagName('audio')[0];
+		console.log("audio played");
+		console.log(button);
+		var audio = button.parentElement.getElementsByTagName('audio')[0];
+		console.log(audio);
     	audio.play();
-        button.src = "/man/images/stop-hl.png"
+        button.src = "/man/images/stop-hl.png";
         button.onclick = function() {stopaudio(this);};
-        button.addEventListener("ended", stopaudio(button););
+        button.addEventListener("ended", stopaudio(button), false);
     }
     function stopaudio(button) {
-		const audio = button.parentElement.getElementsByTagName('audio')[0];
+		console.log("audio stopped");
+		console.log(button);
+        var audio = button.parentElement.getElementsByTagName('audio')[0];
+		console.log(audio);
     	audio.pause();
-		audio.currentTime = 0;
-        button.src = "/man/images/play-hl.png"
+        audio.currentTime = 0;
+        button.src = "/man/images/play-hl.png";
         button.onclick = function() {playaudio(this);};
     }
 </script>
