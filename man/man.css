@@ -169,7 +169,7 @@ a {
     padding: 0;
 }
 @media (max-width: 680px) {
-    #backgrounds {
+    #bg-image {
         height: 126px;
         width: auto;
     }
