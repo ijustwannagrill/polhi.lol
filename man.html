@@ -8,6 +8,7 @@
 </head>
     
 <body>
+<div id="main">
 
 <title>BoyMODder Manual</title>
 
@@ -1149,6 +1150,21 @@
     }
 </script>
 
+<script>
+    function playaudio(button) {
+    	button.parentElement.getElementsByTagName('audio')[0].play();
+        button.src = "https://polhi.lol/man/images/stop-hl.png"
+        button.onclick = function() {stopaudio(this);};
+    }
+    function stopaudio(button) {
+    	button.parentElement.getElementsByTagName('audio')[0].pause();
+		button.parentElement.getElementsByTagName('audio')[0].currentTime = 0;
+        button.src = "https://polhi.lol/man/images/play-hl.png"
+        button.onclick = function() {playaudio(this);};
+    }
+</script>
+
+</div>
 </body>
 
 </html>
