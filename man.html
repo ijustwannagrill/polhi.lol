@@ -60,16 +60,15 @@
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('essentials');" />
 </div>
 
-	
 <p>
 	<i>(Note: Currently, <span class="code">MOSS</span>, <span class="code">MECH</span>, <span class="code">MITSUU</span>, <span class="code">ERWIN</span>,
 	<span class="code">bread eater</span> and <span class="code">TEACHER</span> are the characters that may be used.)</i>
 </p>
 
-<p><span class="code">>BACKGROUND <span class="green" onlick="gotosection('backgrounds');">{BG}</span></span> - Set background</p>
-<p><span class="code">>MUSIC <span class="yellow" onlick="gotosection('music');">{TRACK}</span></span> - Play any track from the original PolHi OST</p>
+<p><span class="code">>BACKGROUND <span class="green" onclick="gotosection('backgrounds');">{BG}</span></span> - Set background</p>
+<p><span class="code">>MUSIC <span class="yellow" onclick="gotosection('music');">{TRACK}</span></span> - Play any track from the original PolHi OST</p>
 <p><span class="code">{CHARACTER}: {DIALOGUE}</span> - Make a character say something</p>
-<p><span class="code">{CHARACTER} (<span class="red" onlick="gotosection('sprites');">{EMOTION}</span>): {DIALOGUE}</span> - Make a character say something after switching emotions</p>
+<p><span class="code">{CHARACTER} (<span class="red" onclick="gotosection('sprites');">{EMOTION}</span>): {DIALOGUE}</span> - Make a character say something after switching emotions</p>
 <p><span class="code">[{DIALOGUE}] or *{DIALOGUE}*</span> - Narration</p>
 <p><span class="code"><</span> - Comments <i>(invisible to interpreter)</i></p>
 <br>
@@ -79,7 +78,7 @@
     <img class="link" src="/man/images/link-df.png" onmouseover="this.src='/man/images/link-hl.png';" onmouseout="this.src='/man/images/link-df.png';" onclick="link('manual-character-control');" />
 </div>
 
-<p><span class="code">>{CHARACTER} FEELS <span class="red" onlick="gotosection('sprites');">{EMOTION}</span></span> - Set emotion without saying anything</p>
+<p><span class="code">>{CHARACTER} FEELS <span class="red" onclick="gotosection('sprites');">{EMOTION}</span></span> - Set emotion without saying anything</p>
 <p><span class="code">>{CHARACTER} ENTERS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT}</span> - Put a character on the screen at the position specified <i>(transition) (not specifying a position will just join automatically) (recognized by autojoiner)</i></p>
 <p><span class="code">>{CHARACTER} EXITS</span> - Make a character leave the screen <i>(transition) (ignored by autojoiner)</i></p>
 <p><span class="code">>{CHARACTER} APPEARS {FARLEFT|NEARLEFT|NEARRIGHT|FARRIGHT}</span> - Make character instantly appear on screen <i>(no transition) (ignored by autojoiner)</i></p>
