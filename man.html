@@ -563,6 +563,17 @@
         </tr></thead></table> 
 </div>
 
+<div class="table-background"> 
+    <table class="tg"><thead> 
+        <tr> 
+            <td class="tg-rxn2" rowspan="2"><img src="https://ijustwannagrill.github.io/polhi/polhi-assets/sprites/Erwin/erwin_baka.svg" width="200" height="200"></td> 
+            <td class="tg-pni0">Red</td> 
+        </tr> 
+    <tr> 
+            <td class="tg-2392" style="width:980px">RED, BAKA </td> 
+        </tr></thead></table> 
+</div>
+
 </div>
 
 <br>
@@ -905,6 +916,7 @@
     Below is a list of the music recognized by the compiler.
     Various words that can be used to reference a track are given at the bottom.
     <br>
+	<br>
     To preview a track, press the play button to the left of the title.
 	<br>
 	<br>
@@ -916,6 +928,16 @@
 <br>
 
 <div class="indent">
+
+<div class="table-background"> 
+    <table class="tg"><thead> 
+        <tr> 
+            <td class="tg-pni0">Clear Music</td> 
+        </tr> 
+        <tr> 
+            <td class="tg-2392" style="width:980px">MUTE, SILENCE, NONE, CLEAR </td> 
+        </tr></thead></table> 
+</div>
 
 <div class="table-background"> 
     <table class="tg"><thead> 
@@ -942,6 +964,20 @@
         </tr> 
         <tr> 
             <td class="tg-2392" style="width:980px">DEFAULT, 1, LET IT SIT </td> 
+        </tr></thead></table> 
+</div>
+
+<div class="table-background"> 
+    <table class="tg"><thead> 
+        <tr> 
+            <td class="tg-pni0"> 
+                <img id="audiocontrol" src="/man/images/play-hl.png" onclick="playaudio(this);">&emsp; 
+            	Background Music 2 / "Let it Sit (Super Ultra Omega Ball Blasting Pussy Remix)" 
+                <audio controls><source src="https://ijustwannagrill.github.io/polhi/polhi-assets/music/bgm2.wav"></audio> 
+            </td> 
+        </tr> 
+        <tr> 
+            <td class="tg-2392" style="width:980px">2, LET IT SIT 2, LET IT SIT (SUPER ULTRA OMEGA BALL BLASTING PUSSY REMIX) </td> 
         </tr></thead></table> 
 </div>
 
@@ -1099,16 +1135,6 @@
         </tr></thead></table> 
 </div>
 
-<div class="table-background"> 
-    <table class="tg"><thead> 
-        <tr> 
-            <td class="tg-pni0">Clear Music</td> 
-        </tr> 
-        <tr> 
-            <td class="tg-2392" style="width:980px">MUTE, SILENCE, NONE, CLEAR </td> 
-        </tr></thead></table> 
-</div>
-
 </div>
 
 <br>
@@ -1152,14 +1178,17 @@
 
 <script>
     function playaudio(button) {
-    	button.parentElement.getElementsByTagName('audio')[0].play();
-        button.src = "https://polhi.lol/man/images/stop-hl.png"
+		const audio = button.parentElement.getElementsByTagName('audio')[0];
+    	audio.play();
+        button.src = "/man/images/stop-hl.png"
         button.onclick = function() {stopaudio(this);};
+		document.querySelector(button).addEventListener("ended", stopaudio(button), false);
     }
     function stopaudio(button) {
-    	button.parentElement.getElementsByTagName('audio')[0].pause();
-		button.parentElement.getElementsByTagName('audio')[0].currentTime = 0;
-        button.src = "https://polhi.lol/man/images/play-hl.png"
+		const audio = button.parentElement.getElementsByTagName('audio')[0];
+    	audio.pause();
+		audio.currentTime = 0;
+        button.src = "/man/images/play-hl.png"
         button.onclick = function() {playaudio(this);};
     }
 </script>
