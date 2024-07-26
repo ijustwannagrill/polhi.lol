@@ -1178,20 +1178,14 @@
 
 <script>
     function playaudio(button) {
-		console.log("audio played");
-		console.log(button);
 		var audio = button.parentElement.getElementsByTagName('audio')[0];
-		console.log(audio);
     	audio.play();
         button.src = "/man/images/stop-hl.png";
         button.onclick = function() {stopaudio(this);};
-        button.addEventListener("ended", stopaudio(button), false);
+	button.onended = function() {stopaudio(this);};
     }
     function stopaudio(button) {
-		console.log("audio stopped");
-		console.log(button);
         var audio = button.parentElement.getElementsByTagName('audio')[0];
-		console.log(audio);
     	audio.pause();
         audio.currentTime = 0;
         button.src = "/man/images/play-hl.png";
