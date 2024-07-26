@@ -12,6 +12,11 @@ body {
     color: lightgray;
     line-height: 1.6em;
 }
+#main {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .vert {
     display: inline-flex;
     align-items: left;
@@ -58,7 +63,7 @@ span.hash {
 }
 .indent {
     margin: 0 auto;
-    max-width: 1180px;
+    max-width: 1000px;
 }
 .subheader {
     display: flex;
@@ -145,7 +150,7 @@ a {
     text-align:left;
     vertical-align:middle;
 }
-.tg img {
+.tg .tg-rxn2 img {
     background-color:#111111;
     border-radius: 5px;
     width: 192px;
@@ -155,7 +160,7 @@ a {
     padding-right: 4px;
 }
 @media (max-width: 680px) {
-    .tg img {
+    .tg .tg-rxn2 img {
         width: 96px;
         height: 96px;
         padding-top: 4px;
@@ -173,6 +178,15 @@ a {
         height: 126px;
         width: auto;
     }
+}
+#audiocontrol {
+	cursor: pointer;
+	width: 17px;
+	height: 17px;
+    vertical-align: bottom;
+}
+audio {
+	display: none;
 }
 ::-webkit-scrollbar {
     width: 10px;
