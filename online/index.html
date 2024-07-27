@@ -113,7 +113,7 @@
 <script>
     function share(){
         var text = document.getElementById("input").value;
-        link = "https://polhi.lol/online/?b=" + encodeURIComponent(text); // Make one giant URL parameter
+        link = "https://polhi.lol/online/?b=" + encodeURIComponent(text) + "%0A"; // Make one giant URL parameter
         navigator.clipboard.writeText(link); // Copy to clipboard
 
         // Make the button look pretty
