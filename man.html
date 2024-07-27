@@ -14,7 +14,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-	// If we're coming from the editor...
+        // If we're coming from the editor...
         let params = new URLSearchParams(document.location.search);
         let source = params.get("from");
         
@@ -26,14 +26,18 @@
             }
         }
 
-	// Scroll to section if in URL
-	const thisURL = window.location.href;
+        // Scroll to section if in URL
+        const thisURL = window.location.href;
         const section = thisURL.slice(thisURL.indexOf("#") + 1);
         const element = document.getElementById(section);
         
         setTimeout(function () {
            element.scrollIntoView({
-               block: "start",
+               block: "start"
+           });
+            // Hacky
+		    element.scrollIntoView({
+               block: "start"
            });
         }, 300);
     });
