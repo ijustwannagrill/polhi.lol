@@ -168,6 +168,7 @@
 <script>
     // Confirm user wants to unload tab if text has been entered
     function onBeforeUnload(e) {
+        // Get parameter
         let params = new URLSearchParams(document.location.search);
         let code = params.get("b");
         
@@ -175,9 +176,10 @@
             code = decodeURIComponent(code);
         }
         
-        let input = document.getElementById("input").value;
+        let input = document.getElementById("input").value; // Get value of text box
         
-        if (input != "" && ((code != null && input != code) || code == null)) {
+        if (input != "" && ((code != null && input != code) || code == null)) { // If textbox is in a different state from when the tab was opened
+            // Ask the user if they *really* want to close the tab
             e.preventDefault();
             e.returnValue = "";
             return;
@@ -186,7 +188,7 @@
         delete e["returnValue"];
     }
 
-window.addEventListener("beforeunload", onBeforeUnload);
+    window.addEventListener("beforeunload", onBeforeUnload);
 </script>
 
 </body>
