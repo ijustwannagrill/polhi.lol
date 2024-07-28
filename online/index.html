@@ -177,7 +177,7 @@
         
         let input = document.getElementById("input").value;
         
-        if (input != "" && (code != null && input != code)) {
+        if (input != "" && ((code != null && input != code) || code == null)) {
             e.preventDefault();
             e.returnValue = "";
             return;
