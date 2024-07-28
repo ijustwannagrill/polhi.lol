@@ -168,14 +168,23 @@
 <script>
     // Confirm user wants to unload tab if text has been entered
     function onBeforeUnload(e) {
-    if (document.getElementById("input").value != "") {
-        e.preventDefault();
-        e.returnValue = "";
-        return;
-    }
+        let params = new URLSearchParams(document.location.search);
+        let code = params.get("b");
+        
+        if (code != null) {
+            code = decodeURIComponent(code);
+        }
+        
+        let input = document.getElementById("input").value;
+        
+        if (input != "" && input != code) {
+            e.preventDefault();
+            e.returnValue = "";
+            return;
+        }
 
-    delete e["returnValue"];
-}
+        delete e["returnValue"];
+    }
 
 window.addEventListener("beforeunload", onBeforeUnload);
 </script>
