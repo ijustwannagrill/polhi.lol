@@ -74,7 +74,7 @@
 <p><span class="code">{CHARACTER}: {DIALOGUE}</span> - Make a character say something</p>
 <p><span class="code">{CHARACTER} (<span class="red" onclick="gotosection('sprites');">{EMOTION}</span>): {DIALOGUE}</span> - Make a character say something after switching emotions</p>
 <p><span class="code">[{DIALOGUE}] or *{DIALOGUE}*</span> - Narration</p>
-<p><span class="code"><</span> - Comments <i>(invisible to interpreter)</i></p>
+<p><span class="code"><</span> - Comments <i>(invisible to compiler)</i></p>
 <br>
 
 <div id="manual-character-control" class="vert">
@@ -107,7 +107,7 @@
 </div>
 
 <p><span class="code">>GOTO {NAME}</span> - Go to target scene</p>
-<p><span class="code">>SCENE {NAME}</span> - Specify the start of a scene</p>
+<p><span class="code">>SCENE {NAME}</span> - Specify the start of a scene <i>(must come after its corresponding <span class="code">>GOTO</span>)</i></p>
 <br>
 
 <div class="hidden-online">
