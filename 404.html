@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html, body, .container {
+    height: 100%;
+}
+body {
+  background-color: #1e1e1e;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container img {
+	cursor: pointer;
+}
+@media (max-width: 680px) {
+    .container img {
+        width: 60%;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<img id="404" src="https://polhi.lol/404.png" width="25%" onclick="window.location.href = '/online';">
+</div>
+
+</body>
+</html>
