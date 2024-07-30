@@ -20,7 +20,7 @@
         let code = params.get("b");
         if (code != null) {
             console.log(code);
-            code = code.slice(0, -3);
+            code = code.slice(0, -1);
             console.log(code);
             code = decodeURIComponent(code);
             
@@ -178,6 +178,7 @@
         let code = params.get("b");
         
         if (code != null) {
+            code = code.slice(0, -1);
             code = decodeURIComponent(code);
         }
         
