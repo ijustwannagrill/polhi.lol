@@ -19,6 +19,9 @@
         let params = new URLSearchParams(document.location.search);
         let code = params.get("b");
         if (code != null) {
+            console.log(code);
+            code = code.slice(0, -3);
+            console.log(code);
             code = decodeURIComponent(code);
             
             input = document.getElementById("input");
