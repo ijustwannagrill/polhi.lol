@@ -1501,6 +1501,10 @@ def compile_boymod(event):
                 else:
                     jumpToScene = line.split()[1]
 
+            elif line[1:11].upper() == "NOAUTOJOIN" or line[1:13].upper() == "NO AUTO JOIN" or \
+                 line[1:12].upper() == "NO AUTOJOIN":
+                continue
+
             else:
                 output_div = document.querySelector("#output")
                 output_div.innerText = f"FATAL: {line.strip()}: command invalid!"
