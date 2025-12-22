@@ -983,8 +983,8 @@ def scanUnCalled(sceneNum):
             elif line[1:5].upper() == "JUMP " or line[1:7].upper() == "GO TO " or \
                  line[1:6].upper() == "GOTO ":
                 break
-            elif line[1:12].upper() == "NOAUTOJOIN " or line[1:14].upper() == "NO AUTO JOIN " or \
-                 line[1:13].upper() == "NO AUTOJOIN ":
+            elif line[1:11].upper() == "NOAUTOJOIN" or line[1:13].upper() == "NO AUTO JOIN" or \
+                 line[1:12].upper() == "NO AUTOJOIN":
                 preJoin = []
                 charCalled = []
                 toBeAdded = []
